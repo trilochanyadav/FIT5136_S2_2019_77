@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Discount
+comment1.params=
+comment1.target=Discount()
+comment2.params=discountRate\ discountState
+comment2.target=Discount(double,\ boolean)
+comment3.params=
+comment3.target=double\ getDiscountRate()
+comment4.params=
+comment4.target=boolean\ getDiscountState()
+comment5.params=discountRate
+comment5.target=void\ setDiscountRate(double)
+comment6.params=discountState
+comment6.target=void\ setDiscountState(boolean)
+numComments=7

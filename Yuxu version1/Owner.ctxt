@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Owner
+comment1.params=
+comment1.target=Owner()
+comment2.params=userType\ userId\ email\ passWord\ lName\ fName\ phoneNO\ ownerState
+comment2.target=Owner(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ boolean)
+comment3.params=
+comment3.target=java.lang.String\ phoneNo()
+comment4.params=phoneNo
+comment4.target=void\ phoneNo(java.lang.String)
+comment5.params=
+comment5.target=java.lang.Boolean\ ownerState()
+comment6.params=ownerState
+comment6.target=void\ ownerState(boolean)
+numComments=7
