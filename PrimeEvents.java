@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class PrimeEvents here.
  *
@@ -8,7 +8,9 @@
 public class PrimeEvents
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private ArrayList<Hall> halls;
+    private ArrayList<Booking> bookings;
+    private ArrayList<Users> users;
 
     /**
      * Constructor for objects of class PrimeEvents
@@ -16,7 +18,7 @@ public class PrimeEvents
     public PrimeEvents()
     {
         // initialise instance variables
-        x = 0;
+        
     }
 
     /**
@@ -25,9 +27,9 @@ public class PrimeEvents
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public void runApplication()
     {
         // put your code here
-        return x + y;
+        
     }
 }
