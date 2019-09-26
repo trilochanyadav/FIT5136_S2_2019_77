@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=OwnerDiscount
+comment1.params=
+comment1.target=OwnerDiscount()
+comment2.params=owner\ discountRate\ discountState
+comment2.target=OwnerDiscount(Owner,\ double,\ boolean)
+comment3.params=
+comment3.target=Owner\ getOwner()
+comment4.params=owner
+comment4.target=void\ setOwner(Owner)
+numComments=5

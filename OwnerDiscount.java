@@ -1,3 +1,4 @@
+import java.util.*;
 public class OwnerDiscount extends Discount
 {
     Owner owner;

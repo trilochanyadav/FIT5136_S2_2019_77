@@ -1,3 +1,4 @@
+import java.util.*;
 public class AdminDiscount extends Discount
 {
     Administrator admin;

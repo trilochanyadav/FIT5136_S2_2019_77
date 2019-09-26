@@ -10,7 +10,7 @@ public class PrimeEvents
     // instance variables - replace the example below with your own
     private ArrayList<Hall> halls;
     private ArrayList<Booking> bookings;
-    private ArrayList<Users> users;
+    private ArrayList<User> users;
 
     /**
      * Constructor for objects of class PrimeEvents
@@ -18,7 +18,9 @@ public class PrimeEvents
     public PrimeEvents()
     {
         // initialise instance variables
-        
+        halls = new ArrayList<Hall>();
+        bookings = new ArrayList<Booking>();
+        users = new ArrayList<User>();
     }
 
     /**

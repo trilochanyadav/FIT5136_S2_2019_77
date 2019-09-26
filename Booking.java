@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Booking here.
  *
@@ -8,7 +8,11 @@
 public class Booking
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private int bookingId;
+    private int bookingAmount;
+    private ArrayList<Payment> payments;
+    private boolean checkForCancel;
+    
 
     /**
      * Constructor for objects of class Booking
@@ -16,18 +20,25 @@ public class Booking
     public Booking()
     {
         // initialise instance variables
-        x = 0;
+        bookingId  = 0;
+        bookingAmount = 0;
+        payments = new ArrayList<Payment>();
+        checkForCancel = false;
+        
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void setBookingId(int newBookingId)
     {
-        // put your code here
-        return x + y;
+        bookingId = newBookingId;
+    }
+    
+    public void setbookingAmount(int newBookingAmount)
+    {
+        bookingAmount = newBookingAmount;
+    }
+    
+    public void setCheckForCancel(boolean newCheck)
+    {
+        checkForCancel = newCheck;
     }
 }

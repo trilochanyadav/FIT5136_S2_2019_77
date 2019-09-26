@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Admin here.
+ * Write a description of class Payment here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Admin
+public class Payment
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Admin
+     * Constructor for objects of class Payment
      */
-    public Admin()
+    public Payment()
     {
         // initialise instance variables
         x = 0;

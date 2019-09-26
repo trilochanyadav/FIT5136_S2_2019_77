@@ -8,26 +8,84 @@
 public class Hall
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    private String name;
+    private String address;
+    private int size;
+    private boolean parking;
+    private boolean catering;
+    private int minGuests;
+    
     /**
      * Constructor for objects of class Hall
      */
     public Hall()
     {
         // initialise instance variables
-        x = 0;
+        name = "";
+        address = "";
+        size = 0;
+        parking = false;
+        catering = false;
+        minGuests = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void setName(String newName)
     {
-        // put your code here
-        return x + y;
+        name = newName;
+    }
+    
+    public void setAddress(String newAddress)
+    {
+        address = newAddress;
+    }
+    
+    public void setSize(int newSize)
+    {
+        size = newSize;
+    }
+    
+    public void setParking(boolean newParking)
+    {
+        parking = newParking;
+    }
+    
+    public void setCatering(boolean newCatering)
+    {
+        catering = newCatering;
+    }
+    
+    public void setMinGuests(int newMinGuests)
+    {
+        minGuests = newMinGuests;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public String getAddress()
+    {
+        return address;
+    }
+    
+    public int getSize()
+    {
+        return size;
+    }
+    
+    public boolean getParking()
+    {
+        return parking;
+    }
+    
+    public boolean getCatering()
+    {
+        return catering;
+    }
+    
+    public int getMinGuests()
+    {
+        return minGuests;
     }
 }
