@@ -14,7 +14,7 @@ public class Hall
     private boolean parking;
     private boolean catering;
     private int minGuests;
-    
+    private double hallDiscount;
     /**
      * Constructor for objects of class Hall
      */
