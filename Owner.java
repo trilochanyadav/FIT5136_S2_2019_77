@@ -19,8 +19,6 @@ public class Owner extends User
         this.userId = userId;
         this.email = email;
         this.passWord = passWord;
-        this.lName=lName;
-        this.fName=fName;
         this.phoneNo = phoneNO;
         this.ownerState =ownerState;
     }

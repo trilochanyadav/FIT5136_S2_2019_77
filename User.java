@@ -10,9 +10,7 @@ public class User
         String userId;
         String email;
         String passWord;
-        String lName;
-        String fName;
-
+       
 
         User()
         {
@@ -20,8 +18,7 @@ public class User
             userId= "";
             email= "";
             passWord= "";
-            lName= "";
-            fName= "";
+            
 
         }
 
@@ -31,8 +28,7 @@ public class User
             this.userId = userId;
             this.email = email;
             this.passWord = passWord;
-            this.lName=lName;
-            this.fName=fName;
+            
         }
 
         public String getUserType()

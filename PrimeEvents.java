@@ -54,7 +54,7 @@ public class PrimeEvents
                       integerInput = Integer.parseInt(input);
                       break;
           }
-        }while(integerInput == 1 || integerInput ==2);
+        }while(integerInput != 1 || integerInput != 2);
         
     }
     
