@@ -1,10 +1,10 @@
 import java.io.*;
 import java.util.Scanner;
 /**
- * Write a description of class FIO here.
+ * This class is used to read and write file data to all files like owner.txt,customer.txt,admin.txt,hall.txt
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Trilochan Yadav,Zonghao Dai,Yuxu Chen
+ * @1.0 (30.09.2019)
  */
 public class FIO
 {
@@ -78,5 +78,29 @@ public class FIO
         return null;
     }
     
+    public void setDriversData(String[] newData,String newFileName)//Write Data back to Different Files 
+    {
+      setFileName(newFileName);
+      try
+      {
+           PrintWriter outputFile = new PrintWriter(fileName);
+           int size = newData.length;
+           for(int i = 0;i < size;i++)
+           {
+               outputFile.println(newData[i]);
+              
+            }  
+           outputFile.close();
+     
+      }
+     
+     
+       catch(IOException exception)
+      {
+         System.out.println("Unexpected I/O exception occurs");
+        }
+     }
+    
+   
     
 }

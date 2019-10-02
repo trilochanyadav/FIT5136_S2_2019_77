@@ -1,9 +1,10 @@
-
+import java.util.*;
+import java.io.*;
 /**
  * Write a description of class Hall here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Trilochan Yadav,Zonghao Dai,Yuxu Chen
+ * @1.0 (30.09.2019)
  */
 public class Hall
 {
@@ -14,7 +15,9 @@ public class Hall
     private boolean parking;
     private boolean catering;
     private int minGuests;
-    private double hallDiscount;
+    private double discount;
+    private ArrayList<String> eventType;
+    private int charge;
     /**
      * Constructor for objects of class Hall
      */
@@ -27,8 +30,23 @@ public class Hall
         parking = false;
         catering = false;
         minGuests = 0;
+        discount = 0.00;
+        eventType = new ArrayList<String>();
     }
-
+    
+    public void Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMin,int newCharge, ArrayList<String> types)
+    {
+        name = newName;
+        address = newAddress;
+        size = newSize;
+        parking = newParking;
+        catering = newCatering;
+        minGuests = newMin;
+        charge = newCharge;
+        discount = 0.00;
+        eventType = types;
+    }
+    
     public void setName(String newName)
     {
         name = newName;
@@ -87,5 +105,30 @@ public class Hall
     public int getMinGuests()
     {
         return minGuests;
+    }
+    
+    public double getDiscount()
+    {
+        return discount;
+    }
+    
+    public void setDiscount(double newDiscount)
+    {
+        discount = newDiscount;
+    }
+    
+    public void setCharge(int newCharge)
+    {
+        charge = newCharge;
+    }
+    
+    public void setEventType(ArrayList<String> newTypes)
+    {
+        eventType = newTypes;
+    }
+    
+    public ArrayList<String> getEventType()
+    {
+        return eventType;
     }
 }
