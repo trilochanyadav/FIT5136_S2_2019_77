@@ -67,23 +67,5 @@ public class User
             this.passWord = passWord;
         }
 
-
-        public String getFName()
-        {
-            return fName;
-        }
-        public void setFName(String firstName)
-        {
-            this.fName = firstName;
-        }
-
-        public String getLName()
-        {
-            return lName;
-        }
-        public void setLName(String lName)
-        {
-            this.lName = lName;
-        }
     }
 

@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Interface here.
  *
@@ -19,15 +19,23 @@ public class Interface
         x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public int  startMenu()
     {
-        // put your code here
-        return x + y;
+        System.out.println("*-*-*-*-Welcome to Prime Events*-*-*-*-");
+        System.out.println("Please select an option:");
+        System.out.println("1. Login");
+        System.out.println("2. Register");
+        System.out.println("Please enter the option number");
+        Scanner console = new Scanner(System.in);
+        String input = console.nextLine();
+        int integerInput = Integer.parseInt(input);
+        return integerInput;
+        
     }
+    
+    
+    
+   
+    
+
 }

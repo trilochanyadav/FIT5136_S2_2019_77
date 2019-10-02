@@ -10,7 +10,6 @@ public class Booking
     // instance variables - replace the example below with your own
     private int bookingId;
     private int bookingAmount;
-    private ArrayList<Payment> payments;
     private boolean checkForCancel;
     
 
@@ -22,7 +21,6 @@ public class Booking
         // initialise instance variables
         bookingId  = 0;
         bookingAmount = 0;
-        payments = new ArrayList<Payment>();
         checkForCancel = false;
         
     }

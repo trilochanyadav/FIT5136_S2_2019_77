@@ -23,10 +23,7 @@ public class Owner extends User
         this.ownerState =ownerState;
     }
 
-    public String phoneNo()
-    {
-        return lName;
-    }
+    
     public void phoneNo(String phoneNo)
     {
         this.phoneNo = phoneNo;
