@@ -2,7 +2,7 @@
 comment0.target=Customer
 comment1.params=
 comment1.target=Customer()
-comment2.params=userType\ userId\ email\ passWord\ lName\ fName\ phoneNO\ ownerState
+comment2.params=userType\ userId\ email\ passWord\ lName\ fName\ phoneNO\ customerState
 comment2.target=Customer(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ boolean)
 comment3.params=
 comment3.target=java.lang.String\ getPhoneNo()

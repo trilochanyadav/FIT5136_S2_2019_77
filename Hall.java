@@ -14,10 +14,11 @@ public class Hall
     private int size;
     private boolean parking;
     private boolean catering;
-    private int minGuests;
+    private int maxGuests;
     private double discount;
     private ArrayList<String> eventType;
     private int charge;
+    private String ownerId;
     /**
      * Constructor for objects of class Hall
      */
@@ -29,22 +30,24 @@ public class Hall
         size = 0;
         parking = false;
         catering = false;
-        minGuests = 0;
+        maxGuests = 0;
         discount = 0.00;
         eventType = new ArrayList<String>();
+        ownerId = "";
     }
    
-    public void Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMin,int newCharge, ArrayList<String> types)
+   public void Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,int newDisc,ArrayList<String> types,String id)
     {
         name = newName;
         address = newAddress;
         size = newSize;
         parking = newParking;
         catering = newCatering;
-        minGuests = newMin;
+        maxGuests = newMax;
         charge = newCharge;
-        discount = 0.00;
+        discount = newDisc;
         eventType = types;
+        ownerId = id;
     }
    
     public void setName(String newName)
@@ -72,9 +75,9 @@ public class Hall
         catering = newCatering;
     }
    
-    public void setMinGuests(int newMinGuests)
+    public void setMaxGuests(int newMaxGuests)
     {
-        minGuests = newMinGuests;
+        maxGuests = newMaxGuests;
     }
    
     public String getName()
@@ -102,9 +105,9 @@ public class Hall
         return catering;
     }
    
-    public int getMinGuests()
+    public int getMaxGuests()
     {
-        return minGuests;
+        return maxGuests;
     }
    
     public double getDiscount()
@@ -132,5 +135,14 @@ public class Hall
         return eventType;
     }
     
+    public String getOwnerId()
+    {
+       return ownerId;
+    }
+    
+    public void setOwnerId(String newId)
+    {
+        ownerId = newId;
+    }
     
 }

@@ -5,16 +5,16 @@ public class Customer extends User
 
     public Customer()
     {
-        phoneNo = " ";
+       phoneNo = " ";
 
        customerState= true;
     }
 
-    public Customer (String userType,String userId,String email,String passWord,String lName,String fName, String phoneNO,boolean ownerState)
+    public Customer (String newId,String newPassword,String newName,String passWord,int phoneNo,int newAge,boolean customerState)
     {
         super(userType, userId,email,passWord,lName,fName);
         this.phoneNo = phoneNO;
-        this.customerState =ownerState;
+        this.customerState =customerState;
     }
 
     public String getPhoneNo()
@@ -35,4 +35,9 @@ public class Customer extends User
         this.customerState = customerState;
     }
 
+    public String getCustomerDetails()
+    {
+        String details = email + "," + password + "," + name + "," + phoneNo + "," + age + "," + state;
+        return details;
+    }
 }

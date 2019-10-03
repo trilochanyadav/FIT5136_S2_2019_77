@@ -38,4 +38,9 @@ public class Owner extends User
         this.ownerState = ownerState;
     }
 
+    public String getCustomerDetails()
+    {
+        String details = email + "," + password + "," + name + "," + phoneNo + "," + age + "," + state;
+        return details;
+    }
 }

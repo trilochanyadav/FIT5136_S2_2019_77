@@ -41,7 +41,7 @@ public class FIO
         fileName = newFileName;
     }
     
-    public String readOwnersData(String newFileName) //Read File Data from Different Files and return a String
+    public String readData(String newFileName) //Read File Data from Different Files and return a String
      {
         String allData = "";
         setFileName(newFileName);
@@ -78,7 +78,7 @@ public class FIO
         return null;
     }
     
-    public void setDriversData(String[] newData,String newFileName)//Write Data back to Different Files 
+    public void setData(String[] newData,String newFileName)//Write Data back to Different Files 
     {
       setFileName(newFileName);
       try
