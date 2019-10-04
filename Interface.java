@@ -30,9 +30,9 @@ public class Interface
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
         return integerInput;
-        
+
     }
-    
+
     public int ownerMenu()
     {
         System.out.print('\u000C');
@@ -49,7 +49,7 @@ public class Interface
         int integerInput = Integer.parseInt(input);
         return integerInput;
     }
-    
+
     public int customerMenu()
     {
         System.out.print('\u000C');
@@ -66,11 +66,11 @@ public class Interface
         int integerInput = Integer.parseInt(input);
         return integerInput;
     }
-    
+
     public int adminMenu()
     {
         System.out.println('\u000C');
-        System.out.println("*-*-*-*-Welcome to Customer Menu*-*-*-*-");
+        System.out.println("*-*-*-*-Welcome to Admin Menu*-*-*-*-");
         System.out.println("Please select an option:");
         System.out.println("1. Suspend/Deactivate Users");
         System.out.println("2. Manage Discounts");
@@ -80,6 +80,19 @@ public class Interface
         int integerInput = Integer.parseInt(input);
         return integerInput;
     }
-    
 
+    public int manageHallMenu()
+    {
+        System.out.print('\u000C');
+        System.out.println("*-*-*-*-Welcome to Manage Halls Menu*-*-*-*-");
+        System.out.println("Please select an option:");
+        System.out.println("1. Create A Hall");
+        System.out.println("2. Delete A Hall");
+        System.out.println("3. Modify Hall Details");
+        System.out.println("Please enter the option number");
+        Scanner console = new Scanner(System.in);
+        String input = console.nextLine();
+        int integerInput = Integer.parseInt(input);
+        return integerInput;
+    }
 }

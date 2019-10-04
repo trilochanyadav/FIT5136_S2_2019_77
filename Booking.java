@@ -11,6 +11,7 @@ public class Booking
     private int bookingId;
     private int bookingAmount;
     private boolean checkForCancel;
+    private Quotation quotation;
     
 
     /**

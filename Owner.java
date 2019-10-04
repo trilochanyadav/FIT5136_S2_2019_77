@@ -1,46 +1,16 @@
 import java.util.*;
 public class Owner extends User
 {
-
-    private String phoneNo;
-    private boolean ownerState;
-    private ArrayList<Hall> ownerHalls;
-
-    public Owner ()
+    public Owner(String newId,String newPassword,String newName,int newPhone,int newAge,boolean customerState)
     {
-        phoneNo = " ";
-        ownerState= true;
-        ownerHalls = new ArrayList<Hall>();
-    }
+        super(newId,newPassword,newName,newPhone,newAge,customerState);
 
-    public Owner(String userType,String userId,String email,String passWord,String lName,String fName, String phoneNO,boolean ownerState)
-    {
-        this.userType = userType;
-        this.userId = userId;
-        this.email = email;
-        this.passWord = passWord;
-        this.phoneNo = phoneNO;
-        this.ownerState =ownerState;
-    }
+    }  
 
-    
-    public void phoneNo(String phoneNo)
+    public String getOwnerDetails()
     {
-        this.phoneNo = phoneNo;
-    }
-
-    public Boolean ownerState()
-    {
-        return true;
-    }
-    public void ownerState(boolean ownerState)
-    {
-        this.ownerState = ownerState;
-    }
-
-    public String getCustomerDetails()
-    {
-        String details = email + "," + password + "," + name + "," + phoneNo + "," + age + "," + state;
+        String details = getUserDetails();
         return details;
     }
+
 }

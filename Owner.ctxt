@@ -1,13 +1,7 @@
 #BlueJ class context
 comment0.target=Owner
-comment1.params=
-comment1.target=Owner()
-comment2.params=userType\ userId\ email\ passWord\ lName\ fName\ phoneNO\ ownerState
-comment2.target=Owner(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ boolean)
-comment3.params=phoneNo
-comment3.target=void\ phoneNo(java.lang.String)
-comment4.params=
-comment4.target=java.lang.Boolean\ ownerState()
-comment5.params=ownerState
-comment5.target=void\ ownerState(boolean)
-numComments=6
+comment1.params=newId\ newPassword\ newName\ newPhone\ newAge\ customerState
+comment1.target=Owner(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ boolean)
+comment2.params=
+comment2.target=java.lang.String\ getOwnerDetails()
+numComments=3

@@ -15,7 +15,7 @@ public class PrimeEvents
     private Admin admin;
     private Interface userInterface;
     private Validation validate;
-    
+
     /**
      * Constructor for objects of class PrimeEvents
      */
@@ -42,136 +42,165 @@ public class PrimeEvents
         // put your code here
         System.out.print('\u000C');
         Scanner console = new Scanner(System.in);
-        readCustomersFile();
-        readOwnersFile();
-        readHallFile();
+        //readCustomersFile();
+        //readOwnersFile();
+        //readHallFile();
         int input = userInterface.startMenu();
         do
         {
-          switch(input)
-          {
-            case 1 :  login();
-                      break;
-            case 2 :  register();
-                      break;
-            default : System.out.println("Please enter the option number again");
-                      String inputAgain = console.nextLine();
-                      input = Integer.parseInt(inputAgain);
-                      break;
-          }
+            switch(input)
+            {
+                case 1 :  login();
+                break;
+                case 2 :  register();
+                break;
+                default : System.out.println("Please enter the option number again");
+                String inputAgain = console.nextLine();
+                input = Integer.parseInt(inputAgain);
+                break;
+            }
         }while(input!= 1 || input != 2);
     }
-    
+
     public void login()
     {
-      System.out.print('\u000C');
-      System.out.println("*-*-*-*-Welcome To Login Option*-*-*-*-");
-      System.out.println("Please enter your email ID:");
-      Scanner console = new Scanner(System.in);
-      String email = console.nextLine();
-      System.out.println("Please enter your password:");
-      String password = console.nextLine();
-      boolean validateUser = checkForUser(email,password);
-      
-      
+        System.out.print('\u000C');
+        System.out.println("*-*-*-*-Welcome To Login Option*-*-*-*-");
+        System.out.println("Please enter your email ID:");
+        Scanner console = new Scanner(System.in);
+        String email = console.nextLine();
+        System.out.println("Please enter your password:");
+        String password = console.nextLine();
+        int validateUser = checkForUser(email,password);
+        int choice = 0;
+        switch(validateUser)
+        {
+            case 1 : 
+                     choice = userInterface.adminMenu();
+                     if(choice == 1)
+                       suspendAccounts();
+                     else 
+                       manageAdminDiscounts();
+                     break;
+            case 2 : choice = userInterface.ownerMenu();
+            if(choice == 1)
+            {
+                choice = userInterface.manageHallMenu();
+                if(choice == 1)
+                    createHall(email);
+                else if(choice ==2)
+                    deleteHall(email);
+            }
+            else if(choice == 4)
+                quotationResponse();
+            break;
+            case 3: choice = userInterface.customerMenu();
+            break;
+
+        }
     }
-    
-    public boolean checkForUser(String newEmail,String newPassword)
+
+    public int  checkForUser(String newEmail,String newPassword)
     {
-        return false;
+
+        if(admin.getUserId().equals(newEmail) && admin.getPassword().equals(newPassword))
+        {
+            System.out.println("Login Successful");
+            return 1;
+        }
+        return 0;
     }
-    
+
     public void readCustomersFile()
     {
-       FIO io = new FIO();
-       String[] input = io.readData("customers.txt").split("\\n");
-        if(input != null)
-        {
-           for(int i = 0 ;i < input.length ;i++)
-           {
-            try
-             {
-               String[] userInput = input[i].split(",");
-               int phone = Integer.parseInt(userInput[3]);
-               int age = Integer.parseInt(userInput[4]);
-               Boolean state = Boolean.parseBoolean(userInput[5]);
-               Customer newCus = new Customer(userInput[0],userInput[1],userInput[2],phone,age,state);
-               customers.add(newCus);
-            }
-            
-            catch( Exception e)
-            {
-                System.out.println("Some exception has occured");
-            }
-           }
-        }
-    }
-    
-   
-     public void readOwnersFile()
-    {
         FIO io = new FIO();
-       String[] input = io.readData("owners.txt").split("\\n");
+        String[] input = io.readData("customers.txt").split("\\n");
         if(input != null)
         {
-           for(int i = 0 ;i < input.length ;i++)
-           {
-            try
-             {
-               String[] userInput = input[i].split(",");
-               int phone = Integer.parseInt(userInput[3]);
-               int age = Integer.parseInt(userInput[4]);
-               Boolean state = Boolean.parseBoolean(userInput[5]);
-               Owner newOwn = new Owner(userInput[0],userInput[1],userInput[2],phone,age,state);
-               owners.add(newOwn);
-            }
-            
-            catch( Exception e)
+            for(int i = 0 ;i < input.length ;i++)
             {
-                System.out.println("Some exception has occured");
+                try
+                {
+                    String[] userInput = input[i].split(",");
+                    int phone = Integer.parseInt(userInput[3]);
+                    int age = Integer.parseInt(userInput[4]);
+                    Boolean state = Boolean.parseBoolean(userInput[5]);
+                    Customer newCus = new Customer(userInput[0],userInput[1],userInput[2],phone,age,state);
+                    customers.add(newCus);
+                }
+
+                catch( Exception e)
+                {
+                    System.out.println("Some exception has occured");
+                }
             }
-           }
         }
     }
-    
-    
-    public void readHallFile()
+
+    public void readOwnersFile()
     {
         FIO io = new FIO();
         String[] input = io.readData("owners.txt").split("\\n");
         if(input != null)
         {
-           for(int i = 0 ;i < input.length ;i++)
-           {
-            try
-             {
-               String[] userInput = input[i].split(",");
-               int len = userInput.length;
-               int size = Integer.parseInt(userInput[2]);
-               int maxGuests = Integer.parseInt(userInput[5]);
-               Boolean park = Boolean.parseBoolean(userInput[3]);
-               Boolean cater = Boolean.parseBoolean(userInput[4]);
-               Double disc = Double.parseDouble(userInput[6]);
-               ArrayList<String> events = new ArrayList<String>();
-               for (int j = 7;j < len-1;j++)
-               {
-                 events.add(userInput[j]);   
-                }
-                
-               Hall newha = new Hall(userInput[0],userInput[1],size,park,cater,maxGuests,disc,events,userInput[len-1]);
-               halls.add(newha);
-            }
-            
-            catch( Exception e)
+            for(int i = 0 ;i < input.length ;i++)
             {
-                System.out.println("Some exception has occured");
+                try
+                {
+                    String[] userInput = input[i].split(",");
+                    int phone = Integer.parseInt(userInput[3]);
+                    int age = Integer.parseInt(userInput[4]);
+                    Boolean state = Boolean.parseBoolean(userInput[5]);
+                    Owner newOwn = new Owner(userInput[0],userInput[1],userInput[2],phone,age,state);
+                    owners.add(newOwn);
+                }
+
+                catch( Exception e)
+                {
+                    System.out.println("Some exception has occured");
+                }
             }
-           }
         }
     }
-    
-    
-   public void register()
+
+    public void readHallFile()
+    {
+        FIO io = new FIO();
+        String[] input = io.readData("halls.txt").split("\\n");
+        if(input != null)
+        {
+            for(int i = 0 ;i < input.length ;i++)
+            {
+                try
+                {
+                    String[] userInput = input[i].split(",");
+                    int len = userInput.length;
+                    int size = Integer.parseInt(userInput[2]);
+                    int maxGuests = Integer.parseInt(userInput[5]);
+                    Boolean park = Boolean.parseBoolean(userInput[3]);
+                    Boolean cater = Boolean.parseBoolean(userInput[4]);
+                    int price = Integer.parseInt(userInput[6]);
+                    Double disc = Double.parseDouble(userInput[7]);
+                    ArrayList<String> events = new ArrayList<String>();
+                    for (int j = 8;j < len-1;j++)
+                    {
+                        events.add(userInput[j]);   
+                    }
+
+                    Hall newHall = new Hall(userInput[0],userInput[1],size,park,cater,maxGuests,price,disc,events,userInput[len-1]);
+
+                    halls.add(newHall);
+                }
+
+                catch( Exception e)
+                {
+                    System.out.println("Some exception has occured");
+                }
+            }
+        }
+    }
+
+    public void register()
     {
         System.out.print('\u000C');
         System.out.println("*-*-*-*-Welcome To Registration Option*-*-*-*-");
@@ -200,7 +229,7 @@ public class PrimeEvents
             email = console.nextLine();
             result = validate.checkEmail(email);
         }
-        
+
         System.out.println("Please enter your password");
         password = console.nextLine();
         while(password.length() < 8)
@@ -212,15 +241,14 @@ public class PrimeEvents
         result =  validate.validatePassword(password);
         if(result == false)
         {
-          System.out.println("Password must be atleast 8 characters long and contain 1 uppercase,1 lowercase and 1 special character and 1 number");
-          do
-          {
-             System.out.println("Please enter password again :");
-             password = console.nextLine();
-             result = validate.validatePassword(password);
-           }while(result == false);
-        
-          
+            System.out.println("Password must be atleast 8 characters long and contain 1 uppercase,1 lowercase and 1 special character and 1 number");
+            do
+            {
+                System.out.println("Please enter password again :");
+                password = console.nextLine();
+                result = validate.validatePassword(password);
+            }while(result == false);
+
         }
         System.out.println("Please enter your name :");
         String name = console.nextLine();
@@ -244,20 +272,23 @@ public class PrimeEvents
             input = console.nextLine();
             age =  Integer.parseInt(input);
         }
-        System.out.println("Account created successfully!!");
+        if(userType == 1)
+            System.out.println(" Customer Account created successfully!!");
+        else
+            System.out.println(" Owner Account created successfully!!");
         if(userType == 1)
         {
-          Customer newCus = new Customer(email,password,name,phoneNo,age,state);
-          customers.add(newCus);
-          writeCustomerFile();
+            Customer newCus = new Customer(email,password,name,phoneNo,age,state);
+            customers.add(newCus);
+            writeCustomerFile();
         }
         else
         {
-          Owner newOwn = new Owner(email,password,name,phoneNo,age,state);
-          owners.add(newOwn);
-          writeOwnerFile();
+            Owner newOwn = new Owner(email,password,name,phoneNo,age,state);
+            owners.add(newOwn);
+            writeOwnerFile();
         }
-        
+
         System.out.println("Please select an option:");
         System.out.println("1. Go back to Main Menu");
         System.out.println("2. Exit Application");
@@ -272,40 +303,38 @@ public class PrimeEvents
             integerInput = Integer.parseInt(input);
         }
         if(integerInput ==1)
-          runApplication();
+            runApplication();
         else
-          System.exit(0);
-        
-       }
-              
-      public void writeCustomerFile()
-      {
+            System.exit(0);
+
+    }
+
+    public void writeCustomerFile()
+    {
         String[] data = new String[customers.size()];
         for(int i = 0;i < customers.size();i++)
         {
             Customer newCus = customers.get(i);
             data[i] = newCus.getCustomerDetails();
-           
+
         }
         FIO io = new FIO();
         io.setData(data,"customers.txt");
-        }
-      
-      public void writeOwnerFile()
-      {
-          String[] data = new String[owners.size()];
-         for(int i = 0;i < owners.size();i++)
-         {
+    }
+
+    public void writeOwnerFile()
+    {
+        String[] data = new String[owners.size()];
+        for(int i = 0;i < owners.size();i++)
+        {
             Owner newOwn = owners.get(i);
             data[i] = newOwn.getOwnerDetails();
-           
-         }
+
+        }
         FIO io = new FIO();
         io.setData(data,"owners.txt");
-      }
-       
-       
-       
+    }
+
     public void createHall(String ownerId)
     {
 
@@ -314,10 +343,9 @@ public class PrimeEvents
         System.out.println("*-*-*-*-Create A Hall *-*-*-*-");
         System.out.println("Please enter the name of hall");
         String name = console.nextLine();
-
         System.out.println("Please enter the address of hall");
         String  address = console.nextLine();
-        System.out.println("Plase enter the size of hall in square feet");
+        System.out.println("Please enter the size of hall in square feet");
         String input = console.nextLine();
         int size = Integer.parseInt(input);
         System.out.println("Please enter the parking availability ");
@@ -352,7 +380,7 @@ public class PrimeEvents
         int  cater = Integer.parseInt(input);
         boolean catering = false;
         String catDisplay = "No";
-        
+
         while(cater != 1 && cater!= 2)
         {
             System.out.println("Invalid Input!!");
@@ -368,7 +396,7 @@ public class PrimeEvents
         if(cater ==2)
         {
             catering = false;
-           
+
         }
         System.out.println("Please enter maximum number of  guests hall can accomodate");
         input = console.nextLine();
@@ -378,49 +406,52 @@ public class PrimeEvents
         ArrayList<String> eventTypes = new ArrayList<String>();
         do
         {
-          System.out.print('\u000C');
-          System.out.println("Please select the event type Hall is available for:");
-          System.out.println("1. Wedding Ceremony");
-          System.out.println("2. Wedding Reception");
-          System.out.println("3. Birthday");
-          System.out.println("4. Anniversary");
-          System.out.println("Please enter the option number");
-          input = console.nextLine();
-        int choice = Integer.parseInt(input);
-        while(choice != 1 && choice !=2 && choice != 3 && choice != 4)
-        {
-            System.out.println("Invalid Input,please enter again");
+            System.out.print('\u000C');
+            System.out.println("Please select the event type Hall is available for:");
+            System.out.println("1. Wedding Ceremony");
+            System.out.println("2. Wedding Reception");
+            System.out.println("3. Birthday");
+            System.out.println("4. Anniversary");
+            System.out.println("Please enter the option number");
             input = console.nextLine();
-            choice = Integer.parseInt(input);
-        }
-        if(choice == 1 && !eventTypes.contains("WC"))
-         eventTypes.add("WC");
-        else if(choice == 2 && !eventTypes.contains("WR"))
-         eventTypes.add("WR");
-        else if(choice == 3 && !eventTypes.contains("BI"))
-         eventTypes.add("BI");
-        else if(choice == 4 && !eventTypes.contains("AN")) 
-          eventTypes.add("AN");
-        else
-         System.out.println("The event type has already been added to the hall");
-        System.out.println("Do you want to add more event type for which hall is available");
-        System.out.println("Press Y/y to add more event type");
-        System.out.println("Press N/n if you do  not want to add more events");
-        input = console.nextLine();
-        input = input.toLowerCase();
-        while(!input.equals("y") && !input.equals("n"))
-        {
-            System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             input = input.toLowerCase();
-        }
-        if(input.equals("y"))
-         more = true;
-        else if(input.equals("n"))
-         more = false;
-        
+            int choice = Integer.parseInt(input);
+            while(choice != 1 && choice !=2 && choice != 3 && choice != 4)
+            {
+                System.out.println("Invalid Input,please enter again");
+                input = console.nextLine();
+                choice = Integer.parseInt(input);
+            }
+            if(choice == 1 && !eventTypes.contains("WC"))
+                eventTypes.add("WC");
+            else if(choice == 2 && !eventTypes.contains("WR"))
+                eventTypes.add("WR");
+            else if(choice == 3 && !eventTypes.contains("BI"))
+                eventTypes.add("BI");
+            else if(choice == 4 && !eventTypes.contains("AN")) 
+                eventTypes.add("AN");
+            else
+                System.out.println("The event type has already been added to the hall");
+            System.out.println("Do you want to add more event type for which hall is available");
+            System.out.println("Press Y/y to add more event type");
+            System.out.println("Press N/n if you do  not want to add more events");
+            input = console.nextLine();
+            input = input.toLowerCase();
+            while(!input.equals("y") && !input.equals("n"))
+            {
+                System.out.println("Invalid Input,Please enter again");
+                input = console.nextLine();
+                input = input.toLowerCase();
+            }
+            if(input.equals("y"))
+            {
+                more = true;
+                count++;
+            }
+            else if(input.equals("n"))
+                more = false;
+
         }while(more == true && count < 4);
-        
+
         System.out.println("Please enter price of the hall");
         input = console.nextLine();
         int price = Integer.parseInt(input);
@@ -443,33 +474,92 @@ public class PrimeEvents
         {
             String eventDisplay = "Anniversary";
             if(event.equals("WC"))
-             eventDisplay = "Wedding Ceremony";
+                eventDisplay = "Wedding Ceremony";
             else if(event.equals("WR"))
-             eventDisplay = "Wedding Reception";
+                eventDisplay = "Wedding Reception";
             else if(event.equals("BI"))
-             eventDisplay = "Birthday";
+                eventDisplay = "Birthday";
             System.out.println("Event Type :" + eventDisplay);
         }
         System.out.println("Hall Price : " + price );
         System.out.println("Please confirm all details of hall , press Y/y to confirm");
+        System.out.println("Press Y/y to confirm , Press N/n to enter hall details again");
         input = console.nextLine();
         input = input.toLowerCase();
-        while (!input.equals("y"))
+        while (!input.equals("y") && !input.equals("n"))
         {
-           System.out.println("Invalid Input ,Please enter again"); 
-           input = console.nextLine();
-           input = input.toLowerCase();
-         }
-        System.out.println("Hall added successfully to the system.Congratulations !!!");
+            System.out.println("Invalid Input ,Please enter again"); 
+            input = console.nextLine();
+            input = input.toLowerCase();
+        }
+        if(input.equals("y"))
+        {
+            System.out.println("Hall added successfully to the system.Congratulations !!!");
+            System.out.println("Press 1 to go back to main menu");
+            System.out.println("Press 2 to logout");
+            input = console.nextLine();
+            int integerInput = Integer.parseInt(input);
+            while(integerInput!= 1 && integerInput != 2)
+            { 
+                System.out.println("Invalid Input ,Please enter again");
+                input = console.nextLine();
+                integerInput = Integer.parseInt(input);
+            }
+            if(integerInput ==1) 
+            {
+                int ownerInput = userInterface.ownerMenu();
+                switch(ownerInput)
+                {
+                    case 1 : manageHalls(ownerId);
+                    break;
+                    case 4:  quotationResponse();
+                    break;
+                    default : System.out.println("Incorrect Input");
+                }
+            }
+            else 
+                runApplication();
+        }
+
+        else
+            createHall(ownerId);
         double disc = 0.00;
         Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,disc,eventTypes,ownerId);
         halls.add(newHall);
     }
-    
-    public void deleteHall()
+
+    public void deleteHall(String ownerId)
     {
         System.out.print('\u000C');
         System.out.println("*-*-*-*-Delete A Hall *-*-*-*-");
-        
+
+    }
+
+    public void manageHalls(String ownerId)
+    {
+        int ownerInput = userInterface.manageHallMenu();
+        switch(ownerInput)
+        {
+            case 1 : createHall(ownerId);
+            break;
+            case 2:  deleteHall(ownerId);
+            break;
+            default : System.out.println("Invalid Input!!!,Please enter again");
+            manageHalls(ownerId);
+            break;
+
+        }
+    }
+
+    public void quotationResponse()
+    {
+    }
+    
+    public void suspendAccounts()
+    {
+    }
+    
+    public void manageAdminDiscounts()
+    {
     }
 }

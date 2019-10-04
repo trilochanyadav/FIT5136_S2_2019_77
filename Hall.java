@@ -31,12 +31,13 @@ public class Hall
         parking = false;
         catering = false;
         maxGuests = 0;
+        charge = 0;
         discount = 0.00;
         eventType = new ArrayList<String>();
         ownerId = "";
     }
-   
-   public void Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,int newDisc,ArrayList<String> types,String id)
+
+    public  Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,double newDisc,ArrayList<String> types,String id)
     {
         name = newName;
         address = newAddress;
@@ -49,100 +50,100 @@ public class Hall
         eventType = types;
         ownerId = id;
     }
-   
+
     public void setName(String newName)
     {
         name = newName;
     }
-   
+
     public void setAddress(String newAddress)
     {
         address = newAddress;
     }
-   
+
     public void setSize(int newSize)
     {
         size = newSize;
     }
-   
+
     public void setParking(boolean newParking)
     {
         parking = newParking;
     }
-   
+
     public void setCatering(boolean newCatering)
     {
         catering = newCatering;
     }
-   
+
     public void setMaxGuests(int newMaxGuests)
     {
         maxGuests = newMaxGuests;
     }
-   
+
     public String getName()
     {
         return name;
     }
-   
+
     public String getAddress()
     {
         return address;
     }
-   
+
     public int getSize()
     {
         return size;
     }
-   
+
     public boolean getParking()
     {
         return parking;
     }
-   
+
     public boolean getCatering()
     {
         return catering;
     }
-   
+
     public int getMaxGuests()
     {
         return maxGuests;
     }
-   
+
     public double getDiscount()
     {
         return discount;
     }
-   
+
     public void setDiscount(double newDiscount)
     {
         discount = newDiscount;
     }
-   
+
     public void setCharge(int newCharge)
     {
         charge = newCharge;
     }
-   
+
     public void setEventType(ArrayList<String> newTypes)
     {
         eventType = newTypes;
     }
-   
+
     public ArrayList<String> getEventType()
     {
         return eventType;
     }
-    
+
     public String getOwnerId()
     {
-       return ownerId;
+        return ownerId;
     }
-    
+
     public void setOwnerId(String newId)
     {
         ownerId = newId;
     }
-    
+
 }

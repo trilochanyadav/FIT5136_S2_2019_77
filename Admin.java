@@ -1,27 +1,16 @@
 import java.util.*;
 public class Admin extends User
 {
-    String phoneNo;
-
-    public Admin()
+    public Admin ()
     {
-        phoneNo = " ";
+        super("tyad0002@student.monash.edu","Mangos@123","trilochan",1234567890,24,true);
+
     }
 
-    public Admin(String userType,String userId,String email,String passWord,String lName,String fName, String phoneNO)
+    public String getCustomerDetails()
     {
-        this.userType = userType;
-        this.userId = userId;
-        this.email = email;
-        this.passWord = passWord;
-       
-        this.phoneNo = phoneNO;
-    }
-
-    
-    public void phoneNo(String phoneNo)
-    {
-        this.phoneNo = phoneNo;
+        String details = getUserDetails();
+        return details;
     }
 }
 
