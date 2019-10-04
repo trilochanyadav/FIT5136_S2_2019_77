@@ -29,6 +29,12 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
+        while(integerInput != 1 && integerInput != 2)
+         {
+             System.out.println("Invalid Input,Please enter again");
+             input = console.nextLine();
+             integerInput = Integer.parseInt(input);
+            }
         return integerInput;
 
     }
@@ -47,6 +53,12 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
+        while(integerInput <1 && integerInput > 5)
+         {
+             System.out.println("Invalid Input,Please enter again");
+             input = console.nextLine();
+             integerInput = Integer.parseInt(input);
+            }
         return integerInput;
     }
 
@@ -64,6 +76,12 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
+        while(integerInput < 1 && integerInput > 5)
+         {
+             System.out.println("Invalid Input,Please enter again");
+             input = console.nextLine();
+             integerInput = Integer.parseInt(input);
+            }
         return integerInput;
     }
 
@@ -78,6 +96,12 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
+        while(integerInput !=1 && integerInput != 2)
+         {
+             System.out.println("Invalid Input,Please enter again");
+             input = console.nextLine();
+             integerInput = Integer.parseInt(input);
+            }
         return integerInput;
     }
 
@@ -93,6 +117,12 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
+        while(integerInput < 1 && integerInput > 3)
+         {
+             System.out.println("Invalid Input,Please enter again");
+             input = console.nextLine();
+             integerInput = Integer.parseInt(input);
+            }
         return integerInput;
     }
 }

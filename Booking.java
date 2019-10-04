@@ -11,9 +11,8 @@ public class Booking
     private int bookingId;
     private int bookingAmount;
     private boolean checkForCancel;
-    private Quotation quotation;
-    
-
+    private String customerId;
+    private String hallName;
     /**
      * Constructor for objects of class Booking
      */
@@ -23,21 +22,57 @@ public class Booking
         bookingId  = 0;
         bookingAmount = 0;
         checkForCancel = false;
-        
+        customerId="";
+        hallName ="";
+
     }
 
     public void setBookingId(int newBookingId)
     {
         bookingId = newBookingId;
     }
-    
-    public void setbookingAmount(int newBookingAmount)
+
+    public int getBookingId()
+    {
+        return bookingId;
+    }
+
+    public void setBookingAmount(int newBookingAmount)
     {
         bookingAmount = newBookingAmount;
     }
-    
+
+    public int getBookingAmount()
+    {
+        return bookingAmount;
+    }
+
     public void setCheckForCancel(boolean newCheck)
     {
         checkForCancel = newCheck;
+    }
+    public boolean getCheckForCancel()
+    {
+        return checkForCancel;
+    }
+
+    public void setHallName(String hallName)
+    {
+        this.hallName = hallName;
+    }
+
+    public String getHallName()
+    {
+        return hallName;
+    }
+
+    public void setCustomerId(String customerId)
+    {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerId()
+    {
+        return customerId;
     }
 }

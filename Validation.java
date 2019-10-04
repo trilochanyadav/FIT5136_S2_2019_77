@@ -31,13 +31,15 @@ public class Validation
     {
         if(newPassword.length()>=8)
       {
-        Pattern letter = Pattern.compile("[a-zA-z]");
+        Pattern upperLetter = Pattern.compile("[A-Z]");
+        Pattern lowerLetter = Pattern.compile("[a-z]");
         Pattern digit = Pattern.compile("[0-9]");
         Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
-        Matcher hasLetter = letter.matcher(newPassword);
+        Matcher hasUpperLetter = upperLetter.matcher(newPassword);
+        Matcher hasLowerLetter = lowerLetter.matcher(newPassword);
         Matcher hasDigit = digit.matcher(newPassword);
         Matcher hasSpecial = special.matcher(newPassword);
-        return hasLetter.find() && hasDigit.find() && hasSpecial.find();
+        return hasUpperLetter.find() && hasLowerLetter.find() && hasDigit.find() && hasSpecial.find();
 
        }
        else

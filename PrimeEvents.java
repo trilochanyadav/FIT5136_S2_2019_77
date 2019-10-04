@@ -42,8 +42,8 @@ public class PrimeEvents
         // put your code here
         System.out.print('\u000C');
         Scanner console = new Scanner(System.in);
-        //readCustomersFile();
-        //readOwnersFile();
+        readCustomersFile();
+        readOwnersFile();
         //readHallFile();
         int input = userInterface.startMenu();
         do
@@ -83,31 +83,63 @@ public class PrimeEvents
                        manageAdminDiscounts();
                      break;
             case 2 : choice = userInterface.ownerMenu();
-            if(choice == 1)
-            {
-                choice = userInterface.manageHallMenu();
-                if(choice == 1)
-                    createHall(email);
-                else if(choice ==2)
-                    deleteHall(email);
-            }
-            else if(choice == 4)
-                quotationResponse();
-            break;
-            case 3: choice = userInterface.customerMenu();
-            break;
+                     if(choice == 1)
+                     {
+                       choice = userInterface.manageHallMenu();
+                       if(choice == 1)
+                       createHall(email);
+                       else if(choice ==2)
+                       deleteHall(email);
+                      }
+                     else if(choice == 4)
+                     quotationResponse();
+                     break;
+            case 3:   choice = userInterface.customerMenu();
+                      switch(choice)
+                      {
+                          case 1: bookHall(email);
+                                  break;
+                          case 2: viewHall();
+                                  break;
+                          case 3: searchHall();
+                                  break;
+                       }
+                      break;
+            default : System.out.println("Incorrect Email ID and password");
+                      System.out.println("Please enter again");
+                      login();
+                      break;
 
         }
     }
 
     public int  checkForUser(String newEmail,String newPassword)
     {
-
+        boolean isOwner = false;
+        boolean isCustomer = false;
+        for(Owner owner : owners)
+        {
+            if(owner.getUserId().equals(newEmail) && owner.getPassword().equals(newPassword))
+             isOwner = true;
+         }
+         
+        for(Customer customer : customers)
+        {
+            if(customer.getUserId().equals(newEmail) && customer.getPassword().equals(newPassword))
+             isCustomer = true;
+         }
+         
         if(admin.getUserId().equals(newEmail) && admin.getPassword().equals(newPassword))
         {
             System.out.println("Login Successful");
             return 1;
         }
+        
+        else if (isOwner == true)
+         return 2;
+        else if(isCustomer == true)
+         return 3;
+        else
         return 0;
     }
 
@@ -562,4 +594,17 @@ public class PrimeEvents
     public void manageAdminDiscounts()
     {
     }
+    
+    public void bookHall(String emailId)
+    {
+    }
+    
+    public void searchHall()
+    {
+    }
+    
+    public void viewHall()
+    {
+    }
+    
 }
