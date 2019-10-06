@@ -25,11 +25,12 @@ public class Interface
         System.out.println("Please select an option:");
         System.out.println("1. Login");
         System.out.println("2. Register");
+        
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput != 1 && integerInput != 2)
+        while(integerInput < 1 && integerInput > 2 )
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -49,11 +50,12 @@ public class Interface
         System.out.println("3. Manage Bookings");
         System.out.println("4. Respond To  Quotation Requests");
         System.out.println("5. Manage Payments");
+        System.out.println("6. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput <1 && integerInput > 5)
+        while(integerInput <1 && integerInput > 6)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -72,11 +74,12 @@ public class Interface
         System.out.println("3. Search A Hall");
         System.out.println("4. Manage Bookings");
         System.out.println("5. Write Review");
+        System.out.println("6. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 5)
+        while(integerInput < 1 && integerInput > 6)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -92,6 +95,7 @@ public class Interface
         System.out.println("Please select an option:");
         System.out.println("1. Suspend/Deactivate Users");
         System.out.println("2. Manage Discounts");
+        System.out.println("3. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();

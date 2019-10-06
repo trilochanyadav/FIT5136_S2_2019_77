@@ -44,7 +44,7 @@ public class PrimeEvents
         Scanner console = new Scanner(System.in);
         readCustomersFile();
         readOwnersFile();
-        //readHallFile();
+        readHallFile();
         int input = userInterface.startMenu();
         do
         {
@@ -76,39 +76,45 @@ public class PrimeEvents
         switch(validateUser)
         {
             case 1 : 
-                     choice = userInterface.adminMenu();
-                     if(choice == 1)
-                       suspendAccounts();
-                     else 
-                       manageAdminDiscounts();
-                     break;
+            choice = userInterface.adminMenu();
+            if(choice == 1)
+                suspendAccounts();
+            else if(choice == 2)
+                manageAdminDiscounts();
+            else 
+                runApplication();
+            break;
             case 2 : choice = userInterface.ownerMenu();
-                     if(choice == 1)
-                     {
-                       choice = userInterface.manageHallMenu();
-                       if(choice == 1)
-                       createHall(email);
-                       else if(choice ==2)
-                       deleteHall(email);
-                      }
-                     else if(choice == 4)
-                     quotationResponse();
-                     break;
+            if(choice == 1)
+            {
+                choice = userInterface.manageHallMenu();
+                if(choice == 1)
+                    createHall(email);
+                else if(choice ==2)
+                    deleteHall(email);
+            }
+            else if(choice == 4)
+                quotationResponse();
+            else if(choice == 6)
+                runApplication();
+            break;
             case 3:   choice = userInterface.customerMenu();
-                      switch(choice)
-                      {
-                          case 1: bookHall(email);
-                                  break;
-                          case 2: viewHall();
-                                  break;
-                          case 3: searchHall();
-                                  break;
-                       }
-                      break;
+            switch(choice)
+            {
+                case 1: bookHall(email);
+                break;
+                case 2: viewHall();
+                break;
+                case 3: searchHall();
+                break;
+                case 6 : runApplication();
+                break;
+            }
+            break;
             default : System.out.println("Incorrect Email ID and password");
-                      System.out.println("Please enter again");
-                      login();
-                      break;
+            System.out.println("Please enter again");
+            login();
+            break;
 
         }
     }
@@ -120,27 +126,27 @@ public class PrimeEvents
         for(Owner owner : owners)
         {
             if(owner.getUserId().equals(newEmail) && owner.getPassword().equals(newPassword))
-             isOwner = true;
-         }
-         
+                isOwner = true;
+        }
+
         for(Customer customer : customers)
         {
             if(customer.getUserId().equals(newEmail) && customer.getPassword().equals(newPassword))
-             isCustomer = true;
-         }
-         
+                isCustomer = true;
+        }
+
         if(admin.getUserId().equals(newEmail) && admin.getPassword().equals(newPassword))
         {
             System.out.println("Login Successful");
             return 1;
         }
-        
+
         else if (isOwner == true)
-         return 2;
+            return 2;
         else if(isCustomer == true)
-         return 3;
+            return 3;
         else
-        return 0;
+            return 0;
     }
 
     public void readCustomersFile()
@@ -220,8 +226,8 @@ public class PrimeEvents
                     }
 
                     Hall newHall = new Hall(userInput[0],userInput[1],size,park,cater,maxGuests,price,disc,events,userInput[len-1]);
-
                     halls.add(newHall);
+
                 }
 
                 catch( Exception e)
@@ -367,6 +373,20 @@ public class PrimeEvents
         io.setData(data,"owners.txt");
     }
 
+    public void writeHallFile()
+    {
+        String[] data = new String[halls.size()];
+        for(int i = 0;i < halls.size();i++)
+        {
+            Hall newHall = halls.get(i);
+            data[i] = newHall.getHallDetails();
+
+        }
+        FIO io = new FIO();
+        io.setData(data,"halls.txt");
+
+    }
+
     public void createHall(String ownerId)
     {
 
@@ -409,7 +429,7 @@ public class PrimeEvents
         System.out.println("Enter 1 if catering is available.");
         System.out.println("Enter 2 if no catering available.");
         input= console.nextLine();
-        int  cater = Integer.parseInt(input);
+        int cater = Integer.parseInt(input);
         boolean catering = false;
         String catDisplay = "No";
 
@@ -527,6 +547,10 @@ public class PrimeEvents
         if(input.equals("y"))
         {
             System.out.println("Hall added successfully to the system.Congratulations !!!");
+            double disc = 0.00;
+            Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,disc,eventTypes,ownerId);
+            halls.add(newHall);
+            writeHallFile();
             System.out.println("Press 1 to go back to main menu");
             System.out.println("Press 2 to logout");
             input = console.nextLine();
@@ -549,32 +573,94 @@ public class PrimeEvents
                     default : System.out.println("Incorrect Input");
                 }
             }
+
             else 
+            {
                 runApplication();
+            }
+        }
+        else
+        {
+            createHall(ownerId);
         }
 
-        else
-            createHall(ownerId);
-        double disc = 0.00;
-        Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,disc,eventTypes,ownerId);
-        halls.add(newHall);
     }
 
     public void deleteHall(String ownerId)
     {
         System.out.print('\u000C');
+        Scanner console = new Scanner(System.in);
         System.out.println("*-*-*-*-Delete A Hall *-*-*-*-");
+        ArrayList<String> names = new ArrayList<String>();
+        boolean check = false;
+        for ( Hall newHall : halls)
+        {
+            if(newHall.getOwnerId().equals(ownerId))
+            {
+                names.add(newHall.getName());
+            }
+        }
+        int count = 1;
+        for(String name : names)
+        {
+            System.out.println(count + ": " + name);
+            count++;
+        }
+        System.out.println("Enter the number corresponding to hall you want to delete");
+        String input = console.nextLine();
+        int choice = Integer.parseInt(input);
+        System.out.print('\u000C');
+        String selectedHall = names.get(choice-1);
+        System.out.println("Your selected hall is : " + selectedHall);
+        System.out.println("Press Y/y to add delete this hall");
+        System.out.println("Press N/n if you do not want to delete this hall and go back to Manage Hall Menu");
+        input = console.nextLine();
+        input = input.toLowerCase();
+        while(!input.equals("y") && !input.equals("n"))
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = console.nextLine();
+            input = input.toLowerCase();
+        }
+        if(input.equals("y"))
+        {
+            for(Hall newHall : halls)
+            { 
+                if(newHall.getName().equals(selectedHall))
+                    halls.remove(newHall);
 
+            }
+
+            writeHallFile();
+            System.out.println("Hall deleted successfully!!!");
+            System.out.println("Press 1 to go back to Manage Hall Menu");
+            System.out.println("Press 2 to logout");
+            input = console.nextLine();
+            choice = Integer.parseInt(input);
+            while(choice != 1 && choice !=2)
+            {
+                System.out.println("Invalid Input.Please enter again");
+                input = console.nextLine();
+                choice = Integer.parseInt(input);
+
+            }
+            if(choice == 2)
+                runApplication();
+            else 
+                manageHalls(ownerId);
+        }
     }
 
     public void manageHalls(String ownerId)
     {
         int ownerInput = userInterface.manageHallMenu();
+        boolean check = true;
         switch(ownerInput)
         {
             case 1 : createHall(ownerId);
             break;
-            case 2:  deleteHall(ownerId);
+            case 2: deleteHall(ownerId);
+            
             break;
             default : System.out.println("Invalid Input!!!,Please enter again");
             manageHalls(ownerId);
@@ -586,25 +672,25 @@ public class PrimeEvents
     public void quotationResponse()
     {
     }
-    
+
     public void suspendAccounts()
     {
     }
-    
+
     public void manageAdminDiscounts()
     {
     }
-    
+
     public void bookHall(String emailId)
     {
     }
-    
+
     public void searchHall()
     {
     }
-    
+
     public void viewHall()
     {
     }
-    
+
 }

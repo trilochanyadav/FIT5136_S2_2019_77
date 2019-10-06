@@ -31,13 +31,13 @@ public class Hall
         parking = false;
         catering = false;
         maxGuests = 0;
-        charge = 0;
         discount = 0.00;
+        charge =0;
         eventType = new ArrayList<String>();
         ownerId = "";
     }
 
-    public  Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,double newDisc,ArrayList<String> types,String id)
+    public Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,double newDisc,ArrayList<String> types,String id)
     {
         name = newName;
         address = newAddress;
@@ -146,4 +146,20 @@ public class Hall
         ownerId = newId;
     }
 
+    public String getHallDetails()
+    {
+        String[] thisIsAStringArray = eventType.toArray(new String[eventType.size()]);
+        String delimiter = ",";
+        StringBuilder sb = new StringBuilder();
+        for ( String element : thisIsAStringArray ) {
+            if (sb.length() > 0) {
+                sb.append( delimiter );
+            }
+            sb.append( element );
+        }
+        String hallevents = sb.toString();
+        
+        String det = name + "," + address + "," + size + "," + parking + "," + catering + "," + maxGuests + "," + charge + "," + discount + "," + hallevents + "," + ownerId;
+        return det;
+    }
 }

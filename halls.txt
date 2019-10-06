@@ -1,0 +1,2 @@
+hall1,monash university,500,true,true,500,600,0.1,WR,WC,tytrilochanyadav@gmail.com
+hall4,caulfield,319,false,false,142,643,0.0,AN,trilochan99@hotmail.com
