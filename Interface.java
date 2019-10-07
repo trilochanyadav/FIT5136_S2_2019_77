@@ -70,7 +70,7 @@ public class Interface
         System.out.println("*-*-*-*-Welcome to Customer Menu*-*-*-*-");
         System.out.println("Please select an option:");
         System.out.println("1. Book A Hall");
-        System.out.println("2. View A Hall");
+        System.out.println("2. View All Halls");
         System.out.println("3. Search A Hall");
         System.out.println("4. Manage Bookings");
         System.out.println("5. Write Review");

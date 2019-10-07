@@ -15,7 +15,7 @@ public class Hall
     private boolean parking;
     private boolean catering;
     private int maxGuests;
-    private double discount;
+    private int discount;
     private ArrayList<String> eventType;
     private int charge;
     private String ownerId;
@@ -31,13 +31,13 @@ public class Hall
         parking = false;
         catering = false;
         maxGuests = 0;
-        discount = 0.00;
+        discount = 0;
         charge =0;
         eventType = new ArrayList<String>();
         ownerId = "";
     }
 
-    public Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,double newDisc,ArrayList<String> types,String id)
+    public Hall(String newName,String newAddress,int newSize, boolean newParking,boolean newCatering,int newMax,int newCharge,int newDisc,ArrayList<String> types,String id)
     {
         name = newName;
         address = newAddress;
@@ -116,7 +116,7 @@ public class Hall
         return discount;
     }
 
-    public void setDiscount(double newDiscount)
+    public void setDiscount(int newDiscount)
     {
         discount = newDiscount;
     }
@@ -161,5 +161,37 @@ public class Hall
         
         String det = name + "," + address + "," + size + "," + parking + "," + catering + "," + maxGuests + "," + charge + "," + discount + "," + hallevents + "," + ownerId;
         return det;
+    }
+    
+    public void displayDetails()
+    {
+        System.out.print('\u000C');
+        String available = "Yes";
+        System.out.println("*-*-*-*-Hall Details*-*-*-*-");
+        System.out.println("Hall Name: " + name);
+        System.out.println("Hall Address: " + address);
+        System.out.println("Hall Size (in sq ft.) : " + size);
+        if(parking == false)
+         available = "No";
+        System.out.println("Parking Availability : " + available);
+        available = "Yes";
+        if(catering == false)
+         available = "No";
+        System.out.println("Catering Availability : " + available);
+        System.out.println("Max guests hall can accomodate : " + maxGuests);
+        for (String event : eventType)
+        {
+            String eventDisplay = "Anniversary";
+            if(event.equals("WC"))
+                eventDisplay = "Wedding Ceremony";
+            else if(event.equals("WR"))
+                eventDisplay = "Wedding Reception";
+            else if(event.equals("BI"))
+                eventDisplay = "Birthday";
+            System.out.println("Available for Event Type :" + eventDisplay);
+        }
+        System.out.println("Hall Price (in AUD) : " + charge );
+        
+        System.out.println("Hall Discount : " + discount + " %" );
     }
 }

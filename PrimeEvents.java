@@ -103,7 +103,7 @@ public class PrimeEvents
             {
                 case 1: bookHall(email);
                 break;
-                case 2: viewHall();
+                case 2: viewHall(email);
                 break;
                 case 3: searchHall();
                 break;
@@ -218,7 +218,7 @@ public class PrimeEvents
                     Boolean park = Boolean.parseBoolean(userInput[3]);
                     Boolean cater = Boolean.parseBoolean(userInput[4]);
                     int price = Integer.parseInt(userInput[6]);
-                    Double disc = Double.parseDouble(userInput[7]);
+                    int disc = Integer.parseInt(userInput[7]);
                     ArrayList<String> events = new ArrayList<String>();
                     for (int j = 8;j < len-1;j++)
                     {
@@ -453,6 +453,13 @@ public class PrimeEvents
         System.out.println("Please enter maximum number of  guests hall can accomodate");
         input = console.nextLine();
         int maxGuests = Integer.parseInt(input);
+        while(maxGuests <= 0)
+        {
+            System.out.println("Price of hall cannot be less than or equal to 0");
+            System.out.println("Please enter price again");
+            input = console.nextLine();
+            maxGuests = Integer.parseInt(input);
+        }
         boolean more = false;
         int count = 0;
         ArrayList<String> eventTypes = new ArrayList<String>();
@@ -514,26 +521,9 @@ public class PrimeEvents
             input = console.nextLine();
             price = Integer.parseInt(input);
         }
-        System.out.print('\u000C');
-        System.out.println("*-*-*-*-Hall Details*-*-*-*-");
-        System.out.println("Hall Name: " + name);
-        System.out.println("Hall Address: " + address);
-        System.out.println("Hall Size (in sq ft.) : " + size);
-        System.out.println("Parking Availability : " + parDisplay);
-        System.out.println("Catering Availability : " + catDisplay);
-        System.out.println("Max guests hall can accomodate : " + maxGuests);
-        for (String event : eventTypes)
-        {
-            String eventDisplay = "Anniversary";
-            if(event.equals("WC"))
-                eventDisplay = "Wedding Ceremony";
-            else if(event.equals("WR"))
-                eventDisplay = "Wedding Reception";
-            else if(event.equals("BI"))
-                eventDisplay = "Birthday";
-            System.out.println("Event Type :" + eventDisplay);
-        }
-        System.out.println("Hall Price : " + price );
+        int discount = 0;
+        Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,discount,eventTypes,ownerId);
+        newHall.displayDetails();
         System.out.println("Please confirm all details of hall , press Y/y to confirm");
         System.out.println("Press Y/y to confirm , Press N/n to enter hall details again");
         input = console.nextLine();
@@ -547,12 +537,11 @@ public class PrimeEvents
         if(input.equals("y"))
         {
             System.out.println("Hall added successfully to the system.Congratulations !!!");
-            double disc = 0.00;
-            Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,disc,eventTypes,ownerId);
+
             halls.add(newHall);
             writeHallFile();
-            System.out.println("Press 1 to go back to main menu");
-            System.out.println("Press 2 to logout");
+            System.out.println("Press 1 to Go Back To Main Menu");
+            System.out.println("Press 2 to Logout");
             input = console.nextLine();
             int integerInput = Integer.parseInt(input);
             while(integerInput!= 1 && integerInput != 2)
@@ -660,7 +649,7 @@ public class PrimeEvents
             case 1 : createHall(ownerId);
             break;
             case 2: deleteHall(ownerId);
-            
+
             break;
             default : System.out.println("Invalid Input!!!,Please enter again");
             manageHalls(ownerId);
@@ -689,8 +678,64 @@ public class PrimeEvents
     {
     }
 
-    public void viewHall()
+    public void viewHall(String newEmail)
     {
+        System.out.print('\u000C');
+        Scanner console = new Scanner(System.in);
+        System.out.println("*-*-*-*-View All Halls *-*-*-*-");
+        int count = 1;
+        for(Hall newHall : halls)
+        {
+            System.out.println(count + ". Name :  " + newHall.getName());
+            System.out.println(" Address : " + newHall.getAddress());
+            count++;
+
+        }
+        System.out.println("Enter the number corresponding to the hall to view it's details");
+        String input = console.nextLine();
+        int choice = Integer.parseInt(input);
+        while(choice < 1 && choice > count)
+        {
+            System.out.println("Invalid Input!!!,Please enter again");
+            input = console.nextLine();
+            choice = Integer.parseInt(input);
+
+        }
+        halls.get(choice-1).displayDetails();
+        System.out.println("Press 1 to View All Halls");
+        System.out.println("Press 2 to  Go Back To Main Menu");
+        System.out.println("Press 3 to Logout");
+        input = console.nextLine();
+        choice = Integer.parseInt(input);
+
+        while(choice < 1 && choice > 3)
+        {
+            System.out.println("Invalid Input!!!,Please enter again");
+            input = console.nextLine();
+            choice = Integer.parseInt(input);
+
+        }
+        if(choice ==1)
+         viewHall(newEmail);
+        else if(choice == 2)
+        {
+            choice = userInterface.customerMenu();
+            switch(choice)
+            {
+                case 1: bookHall(newEmail);
+                break;
+                case 2: viewHall(newEmail);
+                break;
+                case 3: searchHall();
+                break;
+                case 6 : runApplication();
+                break;
+            }
+        }
+         
+        else
+         runApplication();
+        
     }
 
 }
