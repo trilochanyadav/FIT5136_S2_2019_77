@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 /**
  * Write a description of class PrimeEvents here.
  *
@@ -42,6 +43,10 @@ public class PrimeEvents
         // put your code here
         System.out.print('\u000C');
         Scanner console = new Scanner(System.in);
+        halls.clear();
+        owners.clear();
+        customers.clear();
+        bookings.clear();
         readCustomersFile();
         readOwnersFile();
         readHallFile();
@@ -92,6 +97,8 @@ public class PrimeEvents
                     createHall(email);
                 else if(choice ==2)
                     deleteHall(email);
+                else if(choice ==4)
+                    runApplication();
             }
             else if(choice == 4)
                 quotationResponse();
@@ -101,11 +108,11 @@ public class PrimeEvents
             case 3:   choice = userInterface.customerMenu();
             switch(choice)
             {
-                case 1: bookHall(email);
+                case 1: viewHall(email);
                 break;
                 case 2: viewHall(email);
                 break;
-                case 3: searchHall();
+                case 3: searchHall(email);
                 break;
                 case 6 : runApplication();
                 break;
@@ -113,6 +120,7 @@ public class PrimeEvents
             break;
             default : System.out.println("Incorrect Email ID and password");
             System.out.println("Please enter again");
+            wait(600);
             login();
             break;
 
@@ -389,32 +397,43 @@ public class PrimeEvents
 
     public void createHall(String ownerId)
     {
-
         System.out.print('\u000C');
         Scanner console = new Scanner(System.in);
+        ArrayList<String> hallNames = new ArrayList<String>();;
+        for (Hall newHall : halls)
+        {
+            hallNames.add(newHall.getName());
+        }
+        String[] names = hallNames.toArray(new String[hallNames.size()]);
+
         System.out.println("*-*-*-*-Create A Hall *-*-*-*-");
         System.out.println("Please enter the name of hall");
         String name = console.nextLine();
+        boolean check = validate.checkHallName(names,name);
+        while(check == true)
+        {
+            System.out.println("Hall name is already present in the system.Please enter other name");
+            name = console.nextLine();
+            check = validate.checkHallName(names,name);
+        }validate.checkHallName(names,name);
         System.out.println("Please enter the address of hall");
         String  address = console.nextLine();
         System.out.println("Please enter the size of hall in square feet");
-        String input = console.nextLine();
-        int size = Integer.parseInt(input);
+        
+        int size = validate.getInteger();
         System.out.println("Please enter the parking availability ");
         System.out.println("Please enter 1 if parking is available ");
         System.out.println("Please enter 2 if parking is not available ");
-        int park =0;
+        
         Scanner c4 = new Scanner(System.in);
-        input= console.nextLine();
-        park = Integer.parseInt(input);
+        int park = validate.getInteger();
         boolean parking = false;
         String parDisplay = "No";
         while(park!= 1 && park!= 2)
         {
             System.out.println("Invalid Input!!");
             System.out.println("Please enter again");
-            input = c4.nextLine();
-            park = Integer.parseInt(input);
+            park = validate.getInteger();
         }
         if( park == 1)
         {
@@ -428,8 +447,8 @@ public class PrimeEvents
         System.out.println("Please enter the catering availability ");
         System.out.println("Enter 1 if catering is available.");
         System.out.println("Enter 2 if no catering available.");
-        input= console.nextLine();
-        int cater = Integer.parseInt(input);
+        
+        int cater = validate.getInteger();
         boolean catering = false;
         String catDisplay = "No";
 
@@ -437,8 +456,8 @@ public class PrimeEvents
         {
             System.out.println("Invalid Input!!");
             System.out.println("Please enter again");
-            input = console.nextLine();
-            cater = Integer.parseInt(input);
+            
+            cater = validate.getInteger();
         }
         if( cater == 1)
         {
@@ -451,14 +470,13 @@ public class PrimeEvents
 
         }
         System.out.println("Please enter maximum number of  guests hall can accomodate");
-        input = console.nextLine();
-        int maxGuests = Integer.parseInt(input);
+        
+        int maxGuests = validate.getInteger();
         while(maxGuests <= 0)
         {
             System.out.println("Price of hall cannot be less than or equal to 0");
             System.out.println("Please enter price again");
-            input = console.nextLine();
-            maxGuests = Integer.parseInt(input);
+             maxGuests = validate.getInteger();
         }
         boolean more = false;
         int count = 0;
@@ -472,13 +490,13 @@ public class PrimeEvents
             System.out.println("3. Birthday");
             System.out.println("4. Anniversary");
             System.out.println("Please enter the option number");
-            input = console.nextLine();
-            int choice = Integer.parseInt(input);
+            
+            int choice = validate.getInteger();
             while(choice != 1 && choice !=2 && choice != 3 && choice != 4)
             {
                 System.out.println("Invalid Input,please enter again");
-                input = console.nextLine();
-                choice = Integer.parseInt(input);
+                
+                choice = validate.getInteger();
             }
             if(choice == 1 && !eventTypes.contains("WC"))
                 eventTypes.add("WC");
@@ -493,7 +511,7 @@ public class PrimeEvents
             System.out.println("Do you want to add more event type for which hall is available");
             System.out.println("Press Y/y to add more event type");
             System.out.println("Press N/n if you do  not want to add more events");
-            input = console.nextLine();
+            String input = console.nextLine();
             input = input.toLowerCase();
             while(!input.equals("y") && !input.equals("n"))
             {
@@ -512,21 +530,30 @@ public class PrimeEvents
         }while(more == true && count < 4);
 
         System.out.println("Please enter price of the hall");
-        input = console.nextLine();
-        int price = Integer.parseInt(input);
+        
+        int price = validate.getInteger();
         while(price <= 0)
         {
             System.out.println("Price of hall cannot be less than or equal to 0");
             System.out.println("Please enter price again");
-            input = console.nextLine();
-            price = Integer.parseInt(input);
+            
+            price = validate.getInteger();
         }
-        int discount = 0;
+        System.out.println("Please enter discount available for hall");
+        
+        int discount = validate.getInteger();
+        while (discount <0 && discount >100)
+        {
+            System.out.println("Discount must be between 0 and 100");
+            System.out.println("Please enter discount again");
+            
+            discount = validate.getInteger();
+        }
         Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,discount,eventTypes,ownerId);
         newHall.displayDetails();
         System.out.println("Please confirm all details of hall , press Y/y to confirm");
         System.out.println("Press Y/y to confirm , Press N/n to enter hall details again");
-        input = console.nextLine();
+         String input = console.nextLine();
         input = input.toLowerCase();
         while (!input.equals("y") && !input.equals("n"))
         {
@@ -542,13 +569,13 @@ public class PrimeEvents
             writeHallFile();
             System.out.println("Press 1 to Go Back To Main Menu");
             System.out.println("Press 2 to Logout");
-            input = console.nextLine();
-            int integerInput = Integer.parseInt(input);
+           
+            int integerInput = validate.getInteger();
             while(integerInput!= 1 && integerInput != 2)
             { 
                 System.out.println("Invalid Input ,Please enter again");
-                input = console.nextLine();
-                integerInput = Integer.parseInt(input);
+                
+                integerInput = validate.getInteger();
             }
             if(integerInput ==1) 
             {
@@ -599,7 +626,7 @@ public class PrimeEvents
         String input = console.nextLine();
         int choice = Integer.parseInt(input);
         System.out.print('\u000C');
-        String selectedHall = names.get(choice-1);
+        String selectedHall = names.get(choice - 1);
         System.out.println("Your selected hall is : " + selectedHall);
         System.out.println("Press Y/y to add delete this hall");
         System.out.println("Press N/n if you do not want to delete this hall and go back to Manage Hall Menu");
@@ -613,13 +640,17 @@ public class PrimeEvents
         }
         if(input.equals("y"))
         {
+            int index = 0;
             for(Hall newHall : halls)
             { 
                 if(newHall.getName().equals(selectedHall))
-                    halls.remove(newHall);
+                {
+                    index = halls.indexOf(newHall); 
+                    break;
+                }
 
             }
-
+            halls.remove(index);
             writeHallFile();
             System.out.println("Hall deleted successfully!!!");
             System.out.println("Press 1 to go back to Manage Hall Menu");
@@ -670,12 +701,62 @@ public class PrimeEvents
     {
     }
 
-    public void bookHall(String emailId)
+    public void searchHall(String newEmail)
     {
-    }
+        System.out.print('\u000C');
+        Scanner console = new Scanner(System.in);
+        System.out.println("*-*-*-*Search A Hall*-*-*-*-");
+        System.out.println("Please enter the name of hall you want to search");
+        String input = console.nextLine();
+        boolean found = false;
+        for(Hall newHall : halls)
+        {
+            if(newHall.getName().equals(input)){
+                newHall.displayDetails();
+                found = true;
+            }
+        }
+        if(found == false)
+        {
+            System.out.println("No hall with that name exists");
+        }
+        System.out.println("Press 1 to Search A Hall");
+        System.out.println("Press 2 to  Go Back To Main Menu");
+        System.out.println("Press 3 to Logout");
+        input = console.nextLine();
+        int choice = Integer.parseInt(input);
 
-    public void searchHall()
-    {
+        while(choice < 1 && choice > 3)
+        {
+            System.out.println("Invalid Input!!!,Please enter again");
+            input = console.nextLine();
+            choice = Integer.parseInt(input);
+
+        }
+        if(choice ==1)
+            searchHall(newEmail);
+        else if(choice == 2)
+        {
+            choice = userInterface.customerMenu();
+            switch(choice)
+            {
+                case 1: 
+                case 2: viewHall(newEmail);
+                break;
+                case 3: searchHall(newEmail);
+                break;
+                case 5 : checkResponse(newEmail);
+                break;
+                case 7 : runApplication();
+                break;
+                default : System.out.println("Option under implementation");
+                break;
+            }
+        }
+
+        else
+            runApplication();
+
     }
 
     public void viewHall(String newEmail)
@@ -701,41 +782,157 @@ public class PrimeEvents
             choice = Integer.parseInt(input);
 
         }
-        halls.get(choice-1).displayDetails();
-        System.out.println("Press 1 to View All Halls");
-        System.out.println("Press 2 to  Go Back To Main Menu");
-        System.out.println("Press 3 to Logout");
+        Hall newHall = halls.get(choice-1);
+        newHall.displayDetails();
+        System.out.println("Press 1 to Book this hall");
+        System.out.println("Press 2 to View All Halls");
+        System.out.println("Press 3 to  Go Back To Main Menu");
+        System.out.println("Press 4 to Logout");
         input = console.nextLine();
         choice = Integer.parseInt(input);
 
-        while(choice < 1 && choice > 3)
+        while(choice < 1 && choice > 5)
         {
             System.out.println("Invalid Input!!!,Please enter again");
             input = console.nextLine();
             choice = Integer.parseInt(input);
 
         }
-        if(choice ==1)
-         viewHall(newEmail);
-        else if(choice == 2)
+        if(choice == 1)
+            bookHall(newHall,newEmail);
+        else if(choice ==2)
+            viewHall(newEmail);
+        else if(choice == 3)
         {
             choice = userInterface.customerMenu();
             switch(choice)
             {
-                case 1: bookHall(newEmail);
-                break;
+                case 1: 
                 case 2: viewHall(newEmail);
                 break;
-                case 3: searchHall();
+                case 3: searchHall(newEmail);
                 break;
                 case 6 : runApplication();
                 break;
             }
         }
-         
+
         else
-         runApplication();
+            runApplication();
+
+    }
+
+    public void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void checkResponse(String newEmail)
+    {
+    }
+
+    public void bookHall(Hall newHall,String newEmail)
+    {
+        System.out.print('\u000C');
+        Scanner console = new Scanner(System.in);
+        System.out.println("*-*-*-*-Select Event Of Booking*-*-*-*-");
+        ArrayList<String> events = newHall.getEventType();
+        int count = 1;
+        for (String event : events)
+        {
+            String eventDisplay = "Anniversary";
+            if(event.equals("WC"))
+                eventDisplay = "Wedding Ceremony";
+            else if(event.equals("WR"))
+                eventDisplay = "Wedding Reception";
+            else if(event.equals("BI"))
+                eventDisplay = "Birthday";
+            System.out.println(count + " : " + eventDisplay);
+            count++;
+        }
+        System.out.println("Please select the number corresponding to the event type:");
+        int choice = validate.getInteger();
+        while(choice <1 && choice > count)
+        {
+            System.out.println("Invalid Input!!!,Please enter again");
+            choice = validate.getInteger();
+        }
+        String event = "Wedding Ceremony";
         
+        if(events.get(choice-1).equals("WR"))
+         event = "Wedding Reception";
+        else if(events.get(choice-1).equals("AN"))
+         event = "Anniversary";
+        else if(events.get(choice-1).equals("BI"))
+         event = "Birthday";        
+        System.out.print('\u000C');
+        System.out.println("*-*-*-*-Book Hall*-*-*-*-");
+        System.out.println("Hall Name : " + newHall.getName());
+        System.out.println("Hall Address : " + newHall.getName());
+        System.out.println("Event Type : " + event);
+        System.out.println("Hall Price in AUD : $" + newHall.getCharge());
+        System.out.println("Discount Percentage on Hall : " + newHall.getDiscount() + " %");
+        Double amount  =  newHall.getDiscount()* newHall.getCharge();
+        int price = (int)Math.round(amount);
+        System.out.println("Discount Amount  on Hall in AUD : $ " + price);
+        amount  =  newHall.getCharge() - (newHall.getDiscount()* newHall.getCharge());
+        price = (int)Math.round(amount);
+        System.out.println("Final Price in AUD: $" + price);
+        System.out.println("Press Y/y to pay ");
+        System.out.println("Press N/n if you want to ask owner for quotation");
+        String input = console.nextLine();
+        input = input.toLowerCase();
+        while(!input.equals("y") && !input.equals("n"))
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = console.nextLine();
+            input = input.toLowerCase();
+        }
+        if(input.equals("y"))
+        {
+            System.out.print('\u000C');
+            System.out.println("*-*-*-*-Make Payment*-*-*-*-");
+            System.out.println("Please pay AUD $" + price);
+            
+            int payment = validate.getInteger();
+            while(payment != price)
+            {
+                System.out.println("Invalid amount!! Please pay again");
+                payment = validate.getInteger();
+            }
+            System.out.println("Payment Successful!!!");
+            wait(600);
+            printReceipt(newHall,newEmail,payment,events.get(choice-1));
+        }
+        else
+        {
+            askQuotation(newHall,newEmail);
+        }
+    }
+
+   
+    
+
+    public void printReceipt(Hall newHall,String newEmail,int amount ,String event)
+    {
+        System.out.print('\u000C');
+        System.out.println("*-*-*-*-Booking Receipt*-*-*-*-");
+        System.out.println("Hall Name : " + newHall.getName());
+        System.out.println("Hall Address : " + newHall.getAddress());
+        System.out.println("Event Type : " + event);
+        System.out.println("Booking Date : " );
+
+    }
+
+    public void askQuotation(Hall newHall,String newEmail)
+    {
     }
 
 }

@@ -1,4 +1,2 @@
-hall1,monash university,500,true,true,500,600,10,WR,WC,tytrilochanyadav@gmail.com
 hall4,caulfield,319,false,false,142,643,0,AN,trilochan99@hotmail.com
-hall13,perth,4232,true,true,121,4131,0,WC,BI,tytrilochanyadav@gmail.com
-qwer,mon,123,true,true,20,999,0,WC,WR,BI,chenyuxu.960626@gmail.com
+hall3,sydney,900,true,false,422,900,32,WC,WR,tytrilochanyadav@gmail.com

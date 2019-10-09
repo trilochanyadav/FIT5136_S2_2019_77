@@ -3,5 +3,5 @@ comment0.target=Admin
 comment1.params=
 comment1.target=Admin()
 comment2.params=
-comment2.target=java.lang.String\ getCustomerDetails()
+comment2.target=java.lang.String\ getAdminDetails()
 numComments=3

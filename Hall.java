@@ -111,6 +111,11 @@ public class Hall
         return maxGuests;
     }
 
+    public int getCharge()
+    {
+        return charge;
+    }
+
     public double getDiscount()
     {
         return discount;
@@ -158,11 +163,11 @@ public class Hall
             sb.append( element );
         }
         String hallevents = sb.toString();
-        
+
         String det = name + "," + address + "," + size + "," + parking + "," + catering + "," + maxGuests + "," + charge + "," + discount + "," + hallevents + "," + ownerId;
         return det;
     }
-    
+
     public void displayDetails()
     {
         System.out.print('\u000C');
@@ -172,11 +177,11 @@ public class Hall
         System.out.println("Hall Address: " + address);
         System.out.println("Hall Size (in sq ft.) : " + size);
         if(parking == false)
-         available = "No";
+            available = "No";
         System.out.println("Parking Availability : " + available);
         available = "Yes";
         if(catering == false)
-         available = "No";
+            available = "No";
         System.out.println("Catering Availability : " + available);
         System.out.println("Max guests hall can accomodate : " + maxGuests);
         for (String event : eventType)
@@ -191,7 +196,7 @@ public class Hall
             System.out.println("Available for Event Type :" + eventDisplay);
         }
         System.out.println("Hall Price (in AUD) : " + charge );
-        
+
         System.out.println("Hall Discount : " + discount + " %" );
     }
 }

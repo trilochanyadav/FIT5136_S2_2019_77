@@ -73,13 +73,14 @@ public class Interface
         System.out.println("2. View All Halls");
         System.out.println("3. Search A Hall");
         System.out.println("4. Manage Bookings");
-        System.out.println("5. Write Review");
-        System.out.println("6. Logout");
+        System.out.println("5. Check for Quotation Response");
+        System.out.println("6. Write Review");
+        System.out.println("7. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 6)
+        while(integerInput < 1 && integerInput > 7)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -117,11 +118,12 @@ public class Interface
         System.out.println("1. Create A Hall");
         System.out.println("2. Delete A Hall");
         System.out.println("3. Modify Hall Details");
+        System.out.println("4. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 3)
+        while(integerInput < 1 && integerInput > 4)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();

@@ -7,7 +7,7 @@ public class Admin extends User
 
     }
 
-    public String getCustomerDetails()
+    public String getAdminDetails()
     {
         String details = getUserDetails();
         return details;

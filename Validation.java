@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class Validation
 {
     // instance variables - replace the example below with your own
-    private int x;
+   
 
     /**
      * Constructor for objects of class Validation
@@ -18,7 +18,7 @@ public class Validation
     public Validation()
     {
         // initialise instance variables
-        x = 0;
+        
     }
 
     /**
@@ -59,4 +59,25 @@ public class Validation
         return pat.matcher(email).matches(); 
     } 
   
+    public boolean checkHallName(String[] names,String name)
+    {
+        for (int i = 0;i<names.length;i++)
+        {
+            if(names[i].equals(name))
+             return true;
+            }
+        return false;
+     }
+    
+    public int getInteger() {
+        
+    while(true){
+        try {
+            return Integer.parseInt(new Scanner(System.in).next());
+        } catch(NumberFormatException ne) {
+            System.out.print("Invalid Input!!,Please enter again");
+        }
+    }
+    
+  }
 }
