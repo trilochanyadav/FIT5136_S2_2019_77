@@ -416,8 +416,14 @@ public class PrimeEvents
             name = console.nextLine();
             check = validate.checkHallName(names,name);
         }validate.checkHallName(names,name);
-        System.out.println("Please enter the address of hall");
+        System.out.println("Please enter the address of hall,Don't enter comma(,) in the address");
         String  address = console.nextLine();
+        while (validate.validateAddress(address) == true)
+        {
+            System.out.println("Please enter the address of hall again,Don't enter comma(,) in the address");
+            address = console.nextLine();
+         }
+            
         System.out.println("Please enter the size of hall in square feet");
         
         int size = validate.getInteger();
@@ -539,21 +545,20 @@ public class PrimeEvents
             
             price = validate.getInteger();
         }
-        System.out.println("Please enter discount available for hall");
+        System.out.println("Please enter discount percentage available for hall");
         
         int discount = validate.getInteger();
-        while (discount <0 && discount >100)
+        while(discount < 0 || discount > 100)
         {
             System.out.println("Discount must be between 0 and 100");
             System.out.println("Please enter discount again");
-            
             discount = validate.getInteger();
         }
         Hall newHall = new Hall(name,address,size,parking,catering,maxGuests,price,discount,eventTypes,ownerId);
         newHall.displayDetails();
         System.out.println("Please confirm all details of hall , press Y/y to confirm");
         System.out.println("Press Y/y to confirm , Press N/n to enter hall details again");
-         String input = console.nextLine();
+        String input = console.nextLine();
         input = input.toLowerCase();
         while (!input.equals("y") && !input.equals("n"))
         {

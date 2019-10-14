@@ -30,7 +30,7 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 2 )
+        while(integerInput < 1 || integerInput > 2 )
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -55,7 +55,7 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput <1 && integerInput > 6)
+        while(integerInput < 1 || integerInput > 6)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -80,7 +80,7 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 7)
+        while(integerInput < 1 || integerInput > 7)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();
@@ -123,7 +123,7 @@ public class Interface
         Scanner console = new Scanner(System.in);
         String input = console.nextLine();
         int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 && integerInput > 4)
+        while(integerInput < 1 || integerInput > 4)
          {
              System.out.println("Invalid Input,Please enter again");
              input = console.nextLine();

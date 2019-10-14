@@ -13,4 +13,6 @@ comment4.params=names\ name
 comment4.target=boolean\ checkHallName(java.lang.String[],\ java.lang.String)
 comment5.params=
 comment5.target=int\ getInteger()
-numComments=6
+comment6.params=address
+comment6.target=boolean\ validateAddress(java.lang.String)
+numComments=7
