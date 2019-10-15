@@ -2,3 +2,5 @@
 2,703,false,trilochan9@hotmail.com,hall89,AN,14-10-2019
 3,98,false,trilochan9@hotmail.com,hall6,WC,14-10-2019
 4,612,false,trilochan9@hotmail.com,hall3,WC,14-10-2019
+5,50,false,trilochan9@hotmail.com,hall6,Wedding Ceremony,15-10-2019
+6,57,false,trilochan9@hotmail.com,hall6,Wedding Ceremony,15-10-2019

@@ -37,7 +37,7 @@ public class Quotation
         customerId = cusId ;
         ownerId = ownId;
         quotationAmount = newAmount;
-        hallName = "";
+        hallName = newName;
         quotationEvent = newEvent;
         response = newResponse;
     }

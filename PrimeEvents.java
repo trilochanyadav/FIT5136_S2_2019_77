@@ -111,18 +111,26 @@ public class PrimeEvents
             else if(choice == 6)
                 runApplication();
             break;
-            case 3:   choice = userInterface.customerMenu();
-            switch(choice)
-            {
-                case 1: viewHall(email);
-                break;
-                case 2: viewHall(email);
-                break;
-                case 3: searchHall(email);
-                break;
-                case 6 : runApplication();
-                break;
-            }
+            case 3: int userChoice =0;  
+            do
+            {     userChoice = userInterface.customerMenu();
+                switch(userChoice)
+                {
+                    case 1: viewHall(email);
+                    break;
+                    case 2: viewHall(email);
+                    break;
+                    case 3: searchHall(email);
+                    break;
+                    case 4: System.out.println("Option under implementation");
+                    case 5 : checkResponse(email);
+                    break;
+                    case 6 : System.out.println("Option under implementation");
+                    break;
+                    case 7 : runApplication();
+                    break;
+                }
+            }while(userChoice == 4 || userChoice ==6);
             break;
             default : System.out.println("Incorrect Email ID and password");
             System.out.println("Please enter again");
@@ -669,17 +677,24 @@ public class PrimeEvents
             }
             if(integerInput ==1) 
             {
-                int ownerInput = userInterface.ownerMenu();
-                switch(ownerInput)
+                int ownerInput = 0;
+                do
                 {
-                    case 1 : manageHalls(ownerId);
-                    break;
-                    case 4:  quotationResponse(ownerId);
-                    break;
-                    default : System.out.println("Incorrect Input");
-                }
+                    ownerInput= userInterface.ownerMenu();
+                    switch(ownerInput)
+                    {
+                        case 1 : manageHalls(ownerId);
+                        break;
+                        case 4:  quotationResponse(ownerId);
+                        break;
+                        case 2:
+                        case 3:
+                        case 5 : System.out.println("Option under implementation");
+                        break;
+                        default : System.out.println("Incorrect Input");
+                    }
+                }while(ownerInput != 1 && ownerInput != 4);
             }
-
             else 
             {
                 runApplication();
@@ -801,7 +816,7 @@ public class PrimeEvents
         {
             System.out.println("Press number corresponding to the request to respond to it");
             int choice = validate.getInteger();
-            
+
             System.out.print('\u000C');
             System.out.println("*-*-*-*Respond To Quotation*-*-*-*-");
             System.out.println("Press 1 to Reject Request");
@@ -813,10 +828,10 @@ public class PrimeEvents
 
                 input = validate.getInteger();
             }
-            
+
             if(input == 1) 
             {
-              quotations.get(choice - 1).setResponse(false);
+                quotations.get(choice - 1).setResponse(false);
             }
             else
             {
@@ -826,12 +841,11 @@ public class PrimeEvents
                 {
                     System.out.println("Invalid Input ,Please enter again");
 
-                input = validate.getInteger();
-               }
-               quotations.get(choice - 1).setQuotationAmount(input);
-             }
-        
-                    
+                    input = validate.getInteger();
+                }
+                quotations.get(choice - 1).setQuotationAmount(input);
+            }
+
         }
         writeQuotationFile();
         System.out.println("Press 1 to Go Back To Main Menu");
@@ -839,20 +853,27 @@ public class PrimeEvents
         int input = validate.getInteger();
         if(input == 1) 
         {
-             int choice = userInterface.ownerMenu();
-            
-                
-                if(choice == 1)
-                    createHall(newEmail);
-                else if(choice ==2)
-                    deleteHall(newEmail);
-                else if(choice ==4)
-                    runApplication();
-            }
+            int ownerInput = 0;
+            do
+            {
+                ownerInput= userInterface.ownerMenu();
+                switch(ownerInput)
+                {
+                    case 1 : manageHalls(newEmail);
+                    break;
+                    case 4:  quotationResponse(newEmail);
+                    break;
+                    case 2:
+                    case 3:
+                    case 5 : System.out.println("Option under implementation");
+                    break;
+                    default : System.out.println("Incorrect Input");
+                }
+            }while(ownerInput != 1 && ownerInput != 4);
+        }
         else
-         runApplication();
-        
-        
+            runApplication();
+
     }
 
     public void suspendAccounts()
@@ -935,21 +956,26 @@ public class PrimeEvents
             searchHall(newEmail);
         else if(input == 2)
         {
-            input = userInterface.customerMenu();
-            switch(input)
-            {
-                case 1: 
-                case 2: viewHall(newEmail);
-                break;
-                case 3: searchHall(newEmail);
-                break;
-                case 5 : checkResponse(newEmail);
-                break;
-                case 7 : runApplication();
-                break;
-                default : System.out.println("Option under implementation");
-                break;
-            }
+            int userChoice =0;  
+            do
+            {     userChoice = userInterface.customerMenu();
+                switch(userChoice)
+                {
+                    case 1: viewHall(newEmail);
+                    break;
+                    case 2: viewHall(newEmail);
+                    break;
+                    case 3: searchHall(newEmail);
+                    break;
+                    case 4: System.out.println("Option under implementation");
+                    case 5 : checkResponse(newEmail);
+                    break;
+                    case 6 : System.out.println("Option under implementation");
+                    break;
+                    case 7 : runApplication();
+                    break;
+                }
+            }while(userChoice == 4 || userChoice ==6);
         }
 
         else
@@ -1002,17 +1028,26 @@ public class PrimeEvents
             viewHall(newEmail);
         else if(choice == 3)
         {
-            choice = userInterface.customerMenu();
-            switch(choice)
-            {
-                case 1: 
-                case 2: viewHall(newEmail);
-                break;
-                case 3: searchHall(newEmail);
-                break;
-                case 6 : runApplication();
-                break;
-            }
+            int userChoice =0;  
+            do
+            {     userChoice = userInterface.customerMenu();
+                switch(userChoice)
+                {
+                    case 1: viewHall(newEmail);
+                    break;
+                    case 2: viewHall(newEmail);
+                    break;
+                    case 3: searchHall(newEmail);
+                    break;
+                    case 4: System.out.println("Option under implementation");
+                    case 5 : checkResponse(newEmail);
+                    break;
+                    case 6 : System.out.println("Option under implementation");
+                    break;
+                    case 7 : runApplication();
+                    break;
+                }
+            }while(userChoice == 4 || userChoice ==6);
         }
 
         else
@@ -1203,18 +1238,26 @@ public class PrimeEvents
         }
         if(input == 1)
         {
-            int choice = userInterface.customerMenu();
-            switch(choice)
-            {
-                case 1: viewHall(newEmail);
-                break;
-                case 2: viewHall(newEmail);
-                break;
-                case 3: searchHall(newEmail);
-                break;
-                case 6 : runApplication();
-                break;
-            }
+            int userChoice =0;  
+            do
+            {     userChoice = userInterface.customerMenu();
+                switch(userChoice)
+                {
+                    case 1: viewHall(newEmail);
+                    break;
+                    case 2: viewHall(newEmail);
+                    break;
+                    case 3: searchHall(newEmail);
+                    break;
+                    case 4: System.out.println("Option under implementation");
+                    case 5 : checkResponse(newEmail);
+                    break;
+                    case 6 : System.out.println("Option under implementation");
+                    break;
+                    case 7 : runApplication();
+                    break;
+                }
+            }while(userChoice == 4 || userChoice ==6);
         }
 
         else 
@@ -1257,7 +1300,8 @@ public class PrimeEvents
         System.out.println("A quotation request has been raised for hall owner");
         System.out.println("Please check for quotation response next time!!");
         int id = quotations.size() + 1;
-        Quotation quote = new Quotation(id,newEmail,newHall.getOwnerId(),0,newHall.getName(),event,true);
+        String name = newHall.getName();
+        Quotation quote = new Quotation(id,newEmail,newHall.getOwnerId(),0,name,event,true);
         quotations.add(quote);
         writeQuotationFile();
         System.out.println("Press 1 to  Go Back To Main Menu");
@@ -1271,21 +1315,26 @@ public class PrimeEvents
 
         if(input == 1)
         {
-            input = userInterface.customerMenu();
-            switch(input)
-            {
-                case 1: 
-                case 2: viewHall(newEmail);
-                break;
-                case 3: searchHall(newEmail);
-                break;
-                case 5 : checkResponse(newEmail);
-                break;
-                case 7 : runApplication();
-                break;
-                default : System.out.println("Option under implementation");
-                break;
-            }
+            int userChoice =0;  
+            do
+            {     userChoice = userInterface.customerMenu();
+                switch(userChoice)
+                {
+                    case 1: viewHall(newEmail);
+                    break;
+                    case 2: viewHall(newEmail);
+                    break;
+                    case 3: searchHall(newEmail);
+                    break;
+                    case 4: System.out.println("Option under implementation");
+                    case 5 : checkResponse(newEmail);
+                    break;
+                    case 6 : System.out.println("Option under implementation");
+                    break;
+                    case 7 : runApplication();
+                    break;
+                }
+            }while(userChoice == 4 || userChoice ==6);
         }
 
         else
