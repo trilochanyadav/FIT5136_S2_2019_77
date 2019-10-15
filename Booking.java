@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 /**
  * Write a description of class Booking here.
  *
@@ -8,23 +10,50 @@ import java.util.*;
 public class Booking
 {
     // instance variables - replace the example below with your own
-    private int bookingId;
+    private  int bookingId ;
     private int bookingAmount;
     private boolean checkForCancel;
     private String customerId;
     private String hallName;
+    private String bookingEvent;
+    private String bookingDate ;
     /**
      * Constructor for objects of class Booking
      */
     public Booking()
     {
         // initialise instance variables
-        bookingId  = 0;
+        bookingId = 0;
         bookingAmount = 0;
         checkForCancel = false;
         customerId="";
         hallName ="";
+        bookingEvent = "";
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        bookingDate = df.format(new Date());
 
+    }
+
+    public Booking(int newId,int amount,boolean check,String cusId,String name,String newEvent,String newDate)
+    {
+        bookingId = newId;
+        bookingAmount = amount;
+        checkForCancel = check;
+        customerId = cusId;
+        hallName = name;
+        bookingEvent = newEvent;
+        bookingDate = newDate;
+
+    }
+
+    public String getBookingDate()
+    {
+        return bookingDate;   
+    }
+
+    public void setBookingDate(String newDate)
+    {
+        bookingDate = newDate;
     }
 
     public void setBookingId(int newBookingId)
@@ -51,6 +80,7 @@ public class Booking
     {
         checkForCancel = newCheck;
     }
+
     public boolean getCheckForCancel()
     {
         return checkForCancel;
@@ -59,6 +89,11 @@ public class Booking
     public void setHallName(String hallName)
     {
         this.hallName = hallName;
+    }
+    
+    public void setBookingEvent(String newEvent)
+    {
+        bookingEvent = newEvent;
     }
 
     public String getHallName()
@@ -74,5 +109,15 @@ public class Booking
     public String getCustomerId()
     {
         return customerId;
+    }
+    
+    public String getBookingEvent()
+    {
+        return bookingEvent;
+    }
+
+    public String getBookingDetails()
+    {
+        return(bookingId + "," + bookingAmount + "," + checkForCancel + "," + customerId + "," + hallName  + "," + bookingEvent + ","+ bookingDate);
     }
 }

@@ -8,7 +8,7 @@ import java.util.*;
 public class Interface
 {
     // instance variables - replace the example below with your own
-    private int x;
+    Validation validate;
 
     /**
      * Constructor for objects of class Interface
@@ -16,7 +16,7 @@ public class Interface
     public Interface()
     {
         // initialise instance variables
-        x = 0;
+        validate = new Validation();
     }
 
     public int  startMenu()
@@ -28,15 +28,14 @@ public class Interface
         
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        String input = console.nextLine();
-        int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 || integerInput > 2 )
+        int input = validate.getInteger();
+        while(input < 1 || input > 2 )
          {
              System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             integerInput = Integer.parseInt(input);
+             
+             input = validate.getInteger();
             }
-        return integerInput;
+        return input;
 
     }
 
@@ -53,15 +52,14 @@ public class Interface
         System.out.println("6. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        String input = console.nextLine();
-        int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 || integerInput > 6)
+       int input = validate.getInteger();
+        
+        while(input < 1 || input > 6)
          {
              System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             integerInput = Integer.parseInt(input);
+             input = validate.getInteger();
             }
-        return integerInput;
+        return input;
     }
 
     public int customerMenu()
@@ -78,15 +76,13 @@ public class Interface
         System.out.println("7. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        String input = console.nextLine();
-        int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 || integerInput > 7)
+        int input =  validate.getInteger();
+        while(input < 1 || input > 7)
          {
              System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             integerInput = Integer.parseInt(input);
+             input = validate.getInteger();
             }
-        return integerInput;
+        return input;
     }
 
     public int adminMenu()
@@ -99,15 +95,13 @@ public class Interface
         System.out.println("3. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        String input = console.nextLine();
-        int integerInput = Integer.parseInt(input);
-        while(integerInput !=1 && integerInput != 2)
+        int input = validate.getInteger();
+        while(input !=1 && input != 2)
          {
              System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             integerInput = Integer.parseInt(input);
+             input = validate.getInteger();
             }
-        return integerInput;
+        return input;
     }
 
     public int manageHallMenu()
@@ -121,14 +115,13 @@ public class Interface
         System.out.println("4. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        String input = console.nextLine();
-        int integerInput = Integer.parseInt(input);
-        while(integerInput < 1 || integerInput > 4)
+        
+        int input = validate.getInteger();
+        while(input < 1 || input > 4)
          {
              System.out.println("Invalid Input,Please enter again");
-             input = console.nextLine();
-             integerInput = Integer.parseInt(input);
+             input = validate.getInteger();
             }
-        return integerInput;
+        return input;
     }
 }
