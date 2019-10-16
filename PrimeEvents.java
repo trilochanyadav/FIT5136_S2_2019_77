@@ -93,30 +93,42 @@ public class PrimeEvents
             case 1 : 
             choice = userInterface.adminMenu();
             if(choice == 1)
+            {
                 admin.suspendAccounts();
+                wait(600);
+                runApplication();
+            }
             else if(choice == 2)
+            {
                 admin.manageAdminDiscounts();
+                wait(600);
+                runApplication();
+            }
             else 
                 runApplication();
             break;
-            case 2 : 
-            choice = userInterface.ownerMenu();
-            if(choice == 1)
+            case 2 : choice = 0;
+            do
             {
-                choice = userInterface.manageHallMenu();
-                if(choice == 1)
-                    createHall(email);
-                else if(choice ==2)
-                    deleteHall(email);
-                else if(choice ==4)
-                    runApplication();
-            }
-            else if(choice == 4)
-                quotationResponse(email);
-            else if(choice == 6)
-                runApplication();
-            else if(choice == 2 || choice == 3 || choice ==6)
-                System.out.println("Option under implementation");
+                choice = userInterface.ownerMenu();
+                switch(choice)
+                {
+                    case 1: manageHalls(email);
+                          break;
+                    case 4 :  quotationResponse(email);
+                    break;
+                    case 6: runApplication();
+                    break;
+                    case 2:
+                    case 3:
+                    case 5 : System.out.println("Option under implementation");
+                    wait(600);
+                    default : System.out.println("Incorrect Input !!! ");
+                    break;
+                }
+            }while(choice != 1 &&  choice != 4 && choice != 6);
+                    
+            
             break;
             case 3: int userChoice =0;  
             do
@@ -129,15 +141,17 @@ public class PrimeEvents
                     break;
                     case 3: searchHall(email);
                     break;
-                    case 4: System.out.println("Option under implementation");
+                    
                     case 5 : checkResponse(email);
                     break;
+                    case 4:
                     case 6 : System.out.println("Option under implementation");
+                    wait(600);
                     break;
                     case 7 : runApplication();
                     break;
                 }
-            }while(userChoice == 4 || userChoice ==6);
+            }while(userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5);
             break;
             default : System.out.println("Incorrect Email ID and password");
             System.out.println("Please enter again");
@@ -797,8 +811,13 @@ public class PrimeEvents
             case 1 : createHall(ownerId);
             break;
             case 2: deleteHall(ownerId);
-
             break;
+            case 3: System.out.println("Option under implementation");
+            wait(600);
+            manageHalls(ownerId);
+            case 4 : runApplication();
+            break;
+            
             default : System.out.println("Invalid Input!!!,Please enter again");
             manageHalls(ownerId);
             break;
@@ -878,6 +897,7 @@ public class PrimeEvents
                     case 2:
                     case 3:
                     case 5 : System.out.println("Option under implementation");
+                    wait(600);
                     break;
                     default : System.out.println("Incorrect Input");
                 }
@@ -975,15 +995,17 @@ public class PrimeEvents
                     break;
                     case 3: searchHall(newEmail);
                     break;
-                    case 4: System.out.println("Option under implementation");
+                    
                     case 5 : checkResponse(newEmail);
                     break;
+                    case 4: 
                     case 6 : System.out.println("Option under implementation");
+                    wait(600);
                     break;
                     case 7 : runApplication();
                     break;
                 }
-            }while(userChoice == 4 || userChoice ==6);
+            }while(userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5);
         }
 
         else
@@ -1061,15 +1083,17 @@ public class PrimeEvents
                         break;
                         case 3: searchHall(newEmail);
                         break;
-                        case 4: System.out.println("Option under implementation");
+                       
                         case 5 : checkResponse(newEmail);
                         break;
+                        case 4: 
                         case 6 : System.out.println("Option under implementation");
+                        wait(600);
                         break;
                         case 7 : runApplication();
                         break;
                     }
-                }while(userChoice == 4 || userChoice ==6);
+                }while(userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5);
             }
 
             else
@@ -1304,15 +1328,17 @@ public class PrimeEvents
                     break;
                     case 3: searchHall(newEmail);
                     break;
-                    case 4: System.out.println("Option under implementation");
+                    
                     case 5 : checkResponse(newEmail);
                     break;
+                    case 4: 
                     case 6 : System.out.println("Option under implementation");
+                    wait(600);
                     break;
                     case 7 : runApplication();
                     break;
                 }
-            }while(userChoice == 4 || userChoice ==6);
+            }while(userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5);
         }
 
         else 
@@ -1416,7 +1442,7 @@ public class PrimeEvents
                     case 7 : runApplication();
                     break;
                 }
-            }while(userChoice == 4 || userChoice ==6);
+            }while(userChoice != 1 && userChoice != 2 && userChoice != 3 && userChoice != 5);
         }
 
         else
