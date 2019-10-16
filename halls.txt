@@ -1,4 +1,4 @@
-hall4,caulfield,319,false,false,142,643,0,AN,trilochan99@hotmail.com
-hall3,sydney,900,true,false,422,900,32,WC,WR,tytrilochanyadav@gmail.com
-hall6,monash,789,true,true,678,890,89,WC,tytrilochanyadav@gmail.com
-hall89,monash melbourne,789,true,false,678,890,21,WC,AN,tytrilochanyadav@gmail.com
+hall4,caulfield,319,false,false,142,643,0,AN,owner2@monash.com
+hall3,sydney,900,true,false,422,900,32,WC,WR,owner1@monash.com
+hall6,monash,789,true,true,678,890,89,WC,owner1@monash.com
+hall89,monash melbourne,789,true,false,678,890,21,WC,AN,owner1@monash.com

@@ -3,7 +3,7 @@ public class Admin extends User
 {
     public Admin ()
     {
-        super("tyad0002@student.monash.edu","Mangos@123","trilochan",1234567890,24,true);
+        super("admin@monash.com","Monash@123","trilochan",1234567890,24,true);
 
     }
 
@@ -12,5 +12,16 @@ public class Admin extends User
         String details = getUserDetails();
         return details;
     }
+    
+    public void suspendAccounts()
+    {
+        System.out.println("Option under implementation");
 }
+     
+     public void manageAdminDiscounts()
+     {
+         System.out.println("Option under implementation");
+        }
+}
+
 

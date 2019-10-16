@@ -25,16 +25,17 @@ public class Interface
         System.out.println("Please select an option:");
         System.out.println("1. Login");
         System.out.println("2. Register");
-        
+        System.out.println("3. View Halls");
+        System.out.println("4. Exit Application");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
         int input = validate.getInteger();
-        while(input < 1 || input > 2 )
-         {
-             System.out.println("Invalid Input,Please enter again");
-             
-             input = validate.getInteger();
-            }
+        while(input < 1 || input > 4 )
+        {
+            System.out.println("Invalid Input,Please enter again");
+
+            input = validate.getInteger();
+        }
         return input;
 
     }
@@ -52,13 +53,13 @@ public class Interface
         System.out.println("6. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-       int input = validate.getInteger();
-        
+        int input = validate.getInteger();
+
         while(input < 1 || input > 6)
-         {
-             System.out.println("Invalid Input,Please enter again");
-             input = validate.getInteger();
-            }
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = validate.getInteger();
+        }
         return input;
     }
 
@@ -78,10 +79,10 @@ public class Interface
         Scanner console = new Scanner(System.in);
         int input =  validate.getInteger();
         while(input < 1 || input > 7)
-         {
-             System.out.println("Invalid Input,Please enter again");
-             input = validate.getInteger();
-            }
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = validate.getInteger();
+        }
         return input;
     }
 
@@ -97,10 +98,10 @@ public class Interface
         Scanner console = new Scanner(System.in);
         int input = validate.getInteger();
         while(input !=1 && input != 2)
-         {
-             System.out.println("Invalid Input,Please enter again");
-             input = validate.getInteger();
-            }
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = validate.getInteger();
+        }
         return input;
     }
 
@@ -115,13 +116,13 @@ public class Interface
         System.out.println("4. Logout");
         System.out.println("Please enter the option number");
         Scanner console = new Scanner(System.in);
-        
+
         int input = validate.getInteger();
         while(input < 1 || input > 4)
-         {
-             System.out.println("Invalid Input,Please enter again");
-             input = validate.getInteger();
-            }
+        {
+            System.out.println("Invalid Input,Please enter again");
+            input = validate.getInteger();
+        }
         return input;
     }
 }

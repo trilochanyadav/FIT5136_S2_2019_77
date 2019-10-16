@@ -1,2 +1,2 @@
-trilochan9@hotmail.com,Mangos@123,tri,1234567890,23,true
-trilochan.yadav@gmail.com,Shit@123,trilo,1234567890,25,true
+customer1@monash.com,Monash@123,customer1,1234567890,23,true
+customer2@monash.com,Monash@123,customer2,1234567890,25,true

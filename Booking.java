@@ -12,7 +12,8 @@ public class Booking
     // instance variables - replace the example below with your own
     private  int bookingId ;
     private int bookingAmount;
-    private boolean checkForCancel;
+    private int noOfGuests;
+    private boolean whetherCater;
     private String customerId;
     private String hallName;
     private String bookingEvent;
@@ -25,7 +26,8 @@ public class Booking
         // initialise instance variables
         bookingId = 0;
         bookingAmount = 0;
-        checkForCancel = false;
+        noOfGuests = 0;
+        whetherCater = false;
         customerId="";
         hallName ="";
         bookingEvent = "";
@@ -34,11 +36,12 @@ public class Booking
 
     }
 
-    public Booking(int newId,int amount,boolean check,String cusId,String name,String newEvent,String newDate)
+    public Booking(int newId,int amount,int newGuests,boolean check,String cusId,String name,String newEvent,String newDate)
     {
         bookingId = newId;
         bookingAmount = amount;
-        checkForCancel = check;
+        noOfGuests = newGuests;
+        whetherCater = check;
         customerId = cusId;
         hallName = name;
         bookingEvent = newEvent;
@@ -76,21 +79,21 @@ public class Booking
         return bookingAmount;
     }
 
-    public void setCheckForCancel(boolean newCheck)
+    public void setWhetherCater(boolean newCheck)
     {
-        checkForCancel = newCheck;
+        whetherCater = newCheck;
     }
 
-    public boolean getCheckForCancel()
+    public boolean getWhetherCater()
     {
-        return checkForCancel;
+        return whetherCater;
     }
 
     public void setHallName(String hallName)
     {
         this.hallName = hallName;
     }
-    
+
     public void setBookingEvent(String newEvent)
     {
         bookingEvent = newEvent;
@@ -110,14 +113,24 @@ public class Booking
     {
         return customerId;
     }
-    
+
     public String getBookingEvent()
     {
         return bookingEvent;
     }
+    
+    public int getNoOfGuests()
+    {
+        return noOfGuests;
+    }
+    
+    public void setNoOfGuests(int newGuests)
+    {
+        noOfGuests = newGuests;
+    }
 
     public String getBookingDetails()
     {
-        return(bookingId + "," + bookingAmount + "," + checkForCancel + "," + customerId + "," + hallName  + "," + bookingEvent + ","+ bookingDate);
+        return(bookingId + "," + bookingAmount + "," + noOfGuests + "," + whetherCater + "," + customerId + "," + hallName  + "," + bookingEvent + ","+ bookingDate);
     }
 }

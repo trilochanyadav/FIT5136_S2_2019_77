@@ -13,6 +13,8 @@ public class Quotation
     private String customerId;
     private String ownerId;
     private int quotationAmount;
+    private int noOfGuests;
+    private boolean catering;
     private String hallName;
     private String quotationEvent;
     private boolean response;
@@ -26,17 +28,21 @@ public class Quotation
         customerId = "";
         ownerId = "";
         quotationAmount = 0;
+        noOfGuests = 0;
+        catering = false;
         hallName = "";
         quotationEvent = "";
         response = true;
     }
 
-    public Quotation(int newId,String cusId,String ownId,int newAmount,String newName,String newEvent,boolean newResponse)
+    public Quotation(int newId,String cusId,String ownId,int newAmount,int newGuests,boolean cater,String newName,String newEvent,boolean newResponse)
     {
         quotationId = newId;
         customerId = cusId ;
         ownerId = ownId;
         quotationAmount = newAmount;
+        noOfGuests = newGuests;
+        catering = cater;
         hallName = newName;
         quotationEvent = newEvent;
         response = newResponse;
@@ -57,6 +63,8 @@ public class Quotation
     {
         return quotationAmount;
     }
+    
+    
 
     public String getCustomerId()
     {
@@ -71,6 +79,25 @@ public class Quotation
     public boolean getResponse()
     {
         return response;
+    }
+    public boolean getCatering()
+    {
+        return catering;
+    }
+    
+    public void setCatering(boolean cater)
+    {
+        catering = cater;
+    }
+    
+    public void setNoOfGuests(int newGuests)
+    {
+        noOfGuests = newGuests;
+    }
+    
+    public int getNoOfGuests()
+    {
+        return noOfGuests;
     }
 
     public String getOwnerId()
@@ -115,7 +142,7 @@ public class Quotation
 
     public String getQuotationDetails()
     {
-        return(quotationId + "," + customerId + "," + ownerId + "," + quotationAmount + "," + hallName + "," + quotationEvent + "," +  response);   
+        return(quotationId + "," + customerId + "," + ownerId + "," + quotationAmount +"," + noOfGuests + ","  + catering+ "," + hallName + "," + quotationEvent + "," +  response);   
     }
 
     public void displayDetails()
@@ -126,6 +153,11 @@ public class Quotation
             System.out.println("*-*-*-*-Quotation Status*-*-*-*-");
             System.out.println("Hall Name : " + hallName);
             System.out.println("Event Type : " + quotationEvent);
+            System.out.println("No Of Guests : " + noOfGuests);
+            String display = "Yes";
+            if(catering == false)
+             display = "No";
+            System.out.println("Catering Provided : " + display);
             System.out.println("Quotation Amount : " + quotationAmount);
         }
         else
